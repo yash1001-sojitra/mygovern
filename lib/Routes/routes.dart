@@ -16,7 +16,6 @@ class Routes {
   }
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    final args = settings.arguments as dynamic;
     switch (settings.name) {
 
       //splash screens
