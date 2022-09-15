@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:mygovern/Core/Theme/app_theme.dart';
+import 'package:mygovern/Routes/routes.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  int? initScreen;
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  initScreen = prefs.getInt("initScreen");
+  await prefs.setInt("initScreen", 1);
+  // await Firebase.initializeApp();
+
+  runApp(MyApp()
+      //   MultiProvider(
+      //   providers: [],
+      //   child: const MyApp(),
+      // )
+      );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,10 +26,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.lightTheme,
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }

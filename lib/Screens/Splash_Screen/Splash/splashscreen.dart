@@ -1,0 +1,78 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, depend_on_referenced_packages
+
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:mygovern/Screens/Home_Screen/homepage.dart';
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+        const Duration(seconds: 5),
+        () => {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              )
+            });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        const BackgroundImage(),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          body: Container(
+            color: Colors.transparent,
+            child: Center(
+              child: SizedBox(
+                height: 60,
+                width: 60,
+                child: //CircularProgressIndicator(),
+                    Lottie.asset('assets/json/lodingtrans.json'),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class BackgroundImage extends StatelessWidget {
+  const BackgroundImage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ShaderMask(
+      shaderCallback: (bounds) => const LinearGradient(
+        colors: [Colors.black, Colors.black38],
+        begin: Alignment.bottomCenter,
+        end: Alignment.center,
+      ).createShader(bounds),
+      blendMode: BlendMode.darken,
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/splash.png"),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black45, BlendMode.darken),
+          ),
+        ),
+      ),
+    );
+  }
+}
