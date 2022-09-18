@@ -11,5 +11,8 @@ const String drawerScreenRoute = '/drawerScreenRoute';
 const String homepageScreenRoute = '/homepageScreenRoute';
 const String searchScreenRoute = '/searchScreenRoute';
 
+//detailspage
+const String viewalldocScreenRoute = '/viewalldocScreenRoute';
+
 
 //****************End-Routes***********************

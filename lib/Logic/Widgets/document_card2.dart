@@ -9,44 +9,40 @@ class DocCard2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Container(
-        width: 130,
-        height: 200,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.withOpacity(0.4)),
-                    borderRadius: BorderRadius.circular(50)),
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 45,
-                  child: Image.asset(
-
-                    documentimage,
-                    height: 60,
-                    width: 60,
-                  ),
+    return Container(
+      width: 130,
+      height: 200,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.withOpacity(0.4)),
+                  borderRadius: BorderRadius.circular(50)),
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 45,
+                child: Image.asset(
+                  documentimage,
+                  height: 60,
+                  width: 60,
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(documentname,
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w900,
-                      color: Color.fromARGB(255, 93, 23, 105))),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(documentname,
+                softWrap: true,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w900,
+                    color: Color.fromARGB(255, 93, 23, 105))),
+          ],
         ),
       ),
     );

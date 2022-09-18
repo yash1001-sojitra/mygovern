@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mygovern/Core/Constant/string.dart';
 import 'package:mygovern/Core/Theme/app_theme.dart';
 import 'package:mygovern/Logic/Widgets/document_card.dart';
 import 'package:mygovern/Logic/Widgets/document_card2.dart';
+import 'package:mygovern/Screens/Details_Screen/view_all_doc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,16 +23,21 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     "Related Documents",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  Text("View All",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.purple))
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, viewalldocScreenRoute);
+                    },
+                    child: const Text("View All",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.purple)),
+                  )
                 ],
               ),
             ),
@@ -55,16 +62,21 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     "Recent Documents",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  Text("View All",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.purple))
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, viewalldocScreenRoute);
+                    },
+                    child: const Text("View All",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.purple)),
+                  )
                 ],
               ),
             ),
@@ -89,16 +101,21 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     "Download Documents",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  Text("View All",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.purple))
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, viewalldocScreenRoute);
+                    },
+                    child: const Text("View All",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.purple)),
+                  )
                 ],
               ),
             ),
