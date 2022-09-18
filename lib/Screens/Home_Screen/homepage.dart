@@ -182,7 +182,7 @@ class CustomDelegate extends SearchDelegate<String> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const DetailsPage(),
+                builder: (context) => const DocStepperView(),
                 settings: RouteSettings(
                   arguments: documentnames[i],
                 ),

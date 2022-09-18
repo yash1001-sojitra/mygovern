@@ -48,9 +48,14 @@ class HomeScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
                 itemBuilder: (BuildContext context, int index) {
-                  return DocCard1(
-                    documentname: "Aadhar \nCard",
-                    documentimage: "assets/images/Mygov.png",
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, stepperdetailsScreenRoute);
+                    },
+                    child: DocCard1(
+                      documentname: "Aadhar \nCard",
+                      documentimage: "assets/images/Mygov.png",
+                    ),
                   );
                 },
               ),

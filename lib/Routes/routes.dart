@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mygovern/Core/Constant/string.dart';
+import 'package:mygovern/Screens/Details_Screen/detailspage.dart';
 import 'package:mygovern/Screens/Details_Screen/view_all_doc.dart';
 import 'package:mygovern/Screens/Home_Screen/homepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,6 +35,9 @@ class Routes {
       // details screens
       case viewalldocScreenRoute:
         return MaterialPageRoute(builder: (context) => const ViewAllDoc());
+
+      case stepperdetailsScreenRoute:
+        return MaterialPageRoute(builder: (context) => const DocStepperView());
 
       default:
         return MaterialPageRoute(
