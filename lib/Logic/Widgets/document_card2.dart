@@ -34,14 +34,21 @@ class DocCard2 extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Text(documentname,
-                softWrap: true,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w900,
-                    color: Color.fromARGB(255, 93, 23, 105))),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                    child: Text(documentname,
+                        softWrap: true,
+                        maxLines: 2,
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w900,
+                            color: Color.fromARGB(255, 93, 23, 105)))),
+              ],
+            ),
           ],
         ),
       ),

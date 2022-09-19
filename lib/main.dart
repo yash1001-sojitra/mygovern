@@ -22,7 +22,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      // localizationsDelegates: [
+
+      // ],
+      // supportedLocales: [
+      //   Locale('gu', 'IN'),
+      // ],
       // theme: AppTheme.lightTheme,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,

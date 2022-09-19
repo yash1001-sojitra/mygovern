@@ -7,7 +7,6 @@ import 'package:mygovern/Screens/BottomBar_Screen/bookmark.dart';
 import 'package:mygovern/Screens/BottomBar_Screen/home_screen.dart';
 import 'package:mygovern/Screens/BottomBar_Screen/recent.dart';
 import 'package:mygovern/Screens/Details_Screen/detailspage.dart';
-import 'package:provider/provider.dart';
 import 'dart:math' as math;
 import '../../Logic/Widgets/drawer.dart';
 

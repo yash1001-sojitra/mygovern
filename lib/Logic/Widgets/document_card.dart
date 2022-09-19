@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mygovern/Core/Theme/app_theme.dart';
 
 class DocCard1 extends StatelessWidget {
   String documentname;
@@ -15,7 +14,7 @@ class DocCard1 extends StatelessWidget {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
             side: BorderSide(color: Colors.grey.withOpacity(0.4))),
-        child: Container(
+        child: SizedBox(
           width: 200,
           // decoration: BoxDecoration(
           //     borderRadius: BorderRadius.circular(10), border: Border.all()),
@@ -23,7 +22,7 @@ class DocCard1 extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Image.asset(
@@ -31,14 +30,19 @@ class DocCard1 extends StatelessWidget {
                   height: 45,
                   width: 60,
                 ),
-                SizedBox(
-                  width: 25,
+                const SizedBox(
+                  width: 10,
                 ),
-                Text(documentname,
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                Flexible(
+                    child: Text(documentname,
+                        softWrap: true,
+                        maxLines: 2,
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Color.fromARGB(255, 93, 23, 105)))),
               ],
             ),
           ),
