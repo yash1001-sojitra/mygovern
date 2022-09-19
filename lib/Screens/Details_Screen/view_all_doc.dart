@@ -113,7 +113,7 @@ class _ViewAllDocState extends State<ViewAllDoc> {
             Divider(),
             GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.8, crossAxisCount: 3),
+                  childAspectRatio: 0.6, crossAxisCount: 3),
               itemCount: documentsname.length,
               physics: NeverScrollableScrollPhysics(),
               // padding: EdgeInsets.all(10),
