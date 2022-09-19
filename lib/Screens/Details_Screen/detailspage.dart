@@ -129,20 +129,33 @@ class _DocStepperViewState extends State<DocStepperView> {
               ),
             )),
         Step(
-            state: _activeCurrentStep <= 4
-                ? StepState.editing
-                : StepState.complete,
-            isActive: _activeCurrentStep >= 0,
-            title: Text(
-              documentdetails[4],
-              style: textstyle,
-            ),
-            content: Center(
-              child: Text(
-                documentdetails[4],
-                style: textstyle,
-              ),
-            )),
+          state:
+              _activeCurrentStep <= 4 ? StepState.editing : StepState.complete,
+          isActive: _activeCurrentStep >= 0,
+          title: Text(
+            documentdetails[4],
+            style: textstyle,
+          ),
+          content: Center(
+              child: Column(
+            children: [
+              Image.asset("assets/images/resancard.jpg"),
+              TextButton(
+                  onPressed: () async {
+                    try {
+                      var imageId = await ImageDownloader.downloadImage(
+                          "assets/images/resancard.jpg");
+                      if (imageId == null) {
+                        return print("Image download faild");
+                      }
+                    } on PlatformException catch (error) {
+                      print(error);
+                    }
+                  },
+                  child: Text("Click here to Download"))
+            ],
+          )),
+        ),
         Step(
             state: _activeCurrentStep <= 5
                 ? StepState.editing
