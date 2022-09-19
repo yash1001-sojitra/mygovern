@@ -81,7 +81,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
         padding: const EdgeInsets.only(top: 20.0),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 0.8, crossAxisCount: 3),
+              childAspectRatio: 0.6, crossAxisCount: 3),
           itemCount: documentsname.length,
           // padding: EdgeInsets.all(10),
           shrinkWrap: true,
