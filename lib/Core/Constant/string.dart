@@ -14,6 +14,7 @@ const String searchScreenRoute = '/searchScreenRoute';
 //detailspage
 const String viewalldocScreenRoute = '/viewalldocScreenRoute';
 const String stepperdetailsScreenRoute = '/stepperdetailsScreenRoute';
+const String categorydetailsScreenRoute = '/categorydetailsScreenRoute';
 
 
 //****************End-Routes***********************

@@ -24,10 +24,13 @@ class DocCard2 extends StatelessWidget {
               child: CircleAvatar(
                 backgroundColor: Colors.white,
                 radius: 45,
-                child: Image.asset(
-                  documentimage,
-                  height: 60,
-                  width: 60,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8.0, left: 10),
+                  child: Image.asset(
+                    documentimage,
+                    height: 60,
+                    width: 60,
+                  ),
                 ),
               ),
             ),
