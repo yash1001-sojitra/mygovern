@@ -98,7 +98,8 @@ class _ViewAllDocState extends State<ViewAllDoc> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
+              padding: const EdgeInsets.only(
+                  left: 15, right: 15, top: 20, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -109,21 +110,19 @@ class _ViewAllDocState extends State<ViewAllDoc> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.8, crossAxisCount: 3),
-                itemCount: documentsname.length,
-                physics: NeverScrollableScrollPhysics(),
-                // padding: EdgeInsets.all(10),
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return DocCard2(
-                      documentname: documentsname[index],
-                      documentimage: "assets/images/Mygov.png");
-                },
-              ),
+            Divider(),
+            GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 0.8, crossAxisCount: 3),
+              itemCount: documentsname.length,
+              physics: NeverScrollableScrollPhysics(),
+              // padding: EdgeInsets.all(10),
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                return DocCard2(
+                    documentname: documentsname[index],
+                    documentimage: "assets/images/Mygov.png");
+              },
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
