@@ -41,8 +41,8 @@ class DocCard1 extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Color.fromARGB(255, 93, 23, 105)))),
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black))),
               ],
             ),
           ),

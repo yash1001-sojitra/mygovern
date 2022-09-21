@@ -27,7 +27,7 @@ class _DocStepperViewState extends State<DocStepperView> {
     "ધંધો/વ્યવસાયના પુરાવા",
     "ધંધો/વ્યવસાયના આવકના છેલ્લા વર્ષના સરવૈયાની નકલ તથા ઇન્કમટેક્ષની નકલ"
   ];
-  final textstyle = TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
+  final textstyle = TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
   List<Step> stepList() => [
         Step(
           state:
@@ -187,7 +187,7 @@ class _DocStepperViewState extends State<DocStepperView> {
                   onPressed: () async {
                     try {
                       var imageId = await ImageDownloader.downloadImage(
-                          "assets/images/lightbill.jpeg");
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw9AD7GKXlRpxHn-Tej5GsoBxCGo3H4fh8DJ-7rKIJ&s");
                       if (imageId == null) {
                         return print("Image download faild");
                       }

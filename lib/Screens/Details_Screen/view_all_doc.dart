@@ -113,7 +113,7 @@ class _ViewAllDocState extends State<ViewAllDoc> {
             Divider(),
             GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.6, crossAxisCount: 3),
+                  childAspectRatio: 0.8, crossAxisCount: 3),
               itemCount: documentsname.length,
               physics: NeverScrollableScrollPhysics(),
               // padding: EdgeInsets.all(10),
@@ -121,7 +121,7 @@ class _ViewAllDocState extends State<ViewAllDoc> {
               itemBuilder: (BuildContext context, int index) {
                 return DocCard2(
                     documentname: documentsname[index],
-                    documentimage: "assets/images/Mygov.png");
+                    documentimage: "assets/icons/national.png");
               },
             ),
             Padding(
@@ -142,14 +142,14 @@ class _ViewAllDocState extends State<ViewAllDoc> {
               child: GridView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.6, crossAxisCount: 3),
+                    childAspectRatio: 0.8, crossAxisCount: 3),
                 itemCount: doc2.length,
                 // padding: EdgeInsets.all(10),
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
                   return DocCard2(
                       documentname: doc2[index],
-                      documentimage: "assets/images/Mygov.png");
+                      documentimage: "assets/icons/national.png");
                 },
               ),
             ),

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:flutter/material.dart';
 import 'package:mygovern/Core/Constant/string.dart';
 import 'package:mygovern/Core/Theme/app_theme.dart';
@@ -17,12 +19,28 @@ class HomeScreen extends StatelessWidget {
       "વારસાઈ પ્રમાણપત્ર"
     ];
 
+    List documenticon = [
+      "national.png",
+      "national.png",
+      "national.png",
+      "national.png",
+      "national.png"
+    ];
+
     List categorys = [
       "નાગરિક સેવાઓ",
       "રેશન કાર્ડ",
       "આવક(Revenue)/ જમીન",
       "મેજિસ્ટ્રિયલ",
       "અન્ય"
+    ];
+
+    List categoryicon = [
+      "nagrikta.png",
+      "rationcard.png",
+      "incom.png",
+      "majistralier.png",
+      "other.png"
     ];
     return SingleChildScrollView(
       child: Container(
@@ -40,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   const Text(
                     "Related Documents",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -48,9 +66,9 @@ class HomeScreen extends StatelessWidget {
                     },
                     child: const Text("View All",
                         style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.purple)),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54)),
                   )
                 ],
               ),
@@ -68,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                     },
                     child: DocCard1(
                       documentname: documentsname[index],
-                      documentimage: "assets/images/Mygov.png",
+                      documentimage: "assets/icons/" + documenticon[index],
                     ),
                   );
                 },
@@ -102,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                     },
                     child: DocCard2(
                       documentname: categorys[index],
-                      documentimage: "assets/images/Mygov.png",
+                      documentimage: "assets/icons/" + categoryicon[index],
                     ),
                   );
                 },
@@ -118,7 +136,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   const Text(
                     "Download Documents",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -126,9 +144,9 @@ class HomeScreen extends StatelessWidget {
                     },
                     child: const Text("View All",
                         style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.purple)),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54)),
                   )
                 ],
               ),
@@ -142,7 +160,7 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return DocCard2(
                     documentname: documentsname[index],
-                    documentimage: "assets/images/Mygov.png",
+                    documentimage: "assets/icons/" + documenticon[index],
                   );
                 },
               ),

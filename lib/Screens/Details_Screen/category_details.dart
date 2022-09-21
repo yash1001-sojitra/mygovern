@@ -81,14 +81,14 @@ class _CategoryDetailsState extends State<CategoryDetails> {
         padding: const EdgeInsets.only(top: 20.0),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 0.6, crossAxisCount: 3),
+              childAspectRatio: 0.8, crossAxisCount: 3),
           itemCount: documentsname.length,
           // padding: EdgeInsets.all(10),
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             return DocCard2(
                 documentname: documentsname[index],
-                documentimage: "assets/images/Mygov.png");
+                documentimage: "assets/icons/national.png");
           },
         ),
       ),
