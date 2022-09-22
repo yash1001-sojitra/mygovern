@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
+        // title: Text("Bookmark"),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {

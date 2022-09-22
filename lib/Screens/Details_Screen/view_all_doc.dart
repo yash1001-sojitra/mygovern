@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mygovern/Logic/Widgets/document_card2.dart';
 import 'dart:math' as math;
+import '../../Logic/Widgets/document_card3.dart';
 import '../../Logic/Widgets/drawer.dart';
 import '../Home_Screen/homepage.dart';
 
@@ -41,6 +44,17 @@ class _ViewAllDocState extends State<ViewAllDoc> {
       "રેશન કાર્ડમાં સરનામું ફેરફાર કરવા",
       "સ્થળાંતર કરવાને કારણે રેશનકાર્ડમાં કમી કર્યાની નોંધ કરવા",
       "નવી પંડીત દીનદયાલ ગ્રાહક ભંડાર (વ્યાજબી ભાવની સરકાર માન્ય દુકાન) મંજુર કરવા"
+    ];
+    List colors = [
+      "0xffCD5C5C",
+      "0xffDFFF00",
+      "0xff40E0D0",
+      "0xff6495ED",
+      "0xffDE3163",
+      "0xffFFBF00",
+      "0xff008000",
+      "0xff800080",
+      "0xff808080",
     ];
     return Scaffold(
       drawerEnableOpenDragGesture: true,
@@ -119,9 +133,12 @@ class _ViewAllDocState extends State<ViewAllDoc> {
               // padding: EdgeInsets.all(10),
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
-                return DocCard2(
-                    documentname: documentsname[index],
-                    documentimage: "assets/icons/national.png");
+                return DocCard3(
+                  documentname: documentsname[index],
+                  documentimage: "assets/icons/national.png",
+                  color:
+                      Color(int.parse(colors[Random().nextInt(colors.length)])),
+                );
               },
             ),
             Padding(
@@ -147,9 +164,12 @@ class _ViewAllDocState extends State<ViewAllDoc> {
                 // padding: EdgeInsets.all(10),
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
-                  return DocCard2(
-                      documentname: doc2[index],
-                      documentimage: "assets/icons/national.png");
+                  return DocCard3(
+                    documentname: doc2[index],
+                    documentimage: "assets/icons/national.png",
+                    color: Color(
+                        int.parse(colors[Random().nextInt(colors.length)])),
+                  );
                 },
               ),
             ),
