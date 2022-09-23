@@ -15,17 +15,13 @@ class Cardfordetails extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 35,
-              child: Image.asset(
-                catimage,
-                height: 40,
-                width: 40,
-              ),
+            Image.asset(
+              catimage,
+              height: 60,
+              width: 60,
             ),
             SizedBox(
-              height: 10,
+              height: 30,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

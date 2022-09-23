@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Steppercard extends StatelessWidget {
-  const Steppercard({super.key});
+  String processname;
+  int index;
+  int size;
+  Color color;
+  Steppercard(
+      {required this.processname,
+      required this.index,
+      required this.size,
+      required this.color,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,25 +23,35 @@ class Steppercard extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
-                backgroundColor: Colors.blue,
+                backgroundColor: color.withOpacity(0.5),
                 radius: 16,
-                child: Text("1"),
+                child: Text(
+                  "$index",
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
               SizedBox(
                 width: 20,
               ),
-              Text("Enter Data Here")
+              Flexible(
+                  child: Text(
+                processname,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 16, color: Colors.black),
+              )),
             ],
           ),
           SizedBox(
             height: 5,
           ),
-          Container(
-              height: 20,
-              width: 30,
-              child: VerticalDivider(
-                color: Colors.black,
-              ))
+          index != size
+              ? Container(
+                  height: 20,
+                  width: 30,
+                  child: VerticalDivider(
+                    color: Colors.black,
+                  ))
+              : SizedBox()
         ],
       ),
     );
