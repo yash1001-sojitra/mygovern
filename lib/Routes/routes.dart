@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:mygovern/Core/Constant/string.dart';
 import 'package:mygovern/Screens/Details_Screen/category_details.dart';
 import 'package:mygovern/Screens/Details_Screen/detailspage.dart';
+import 'package:mygovern/Screens/Details_Screen/stepper_proc.dart';
 import 'package:mygovern/Screens/Details_Screen/view_all_doc.dart';
 import 'package:mygovern/Screens/Home_Screen/homepage.dart';
+import 'package:mygovern/Screens/category_for_document/cat_for_doc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Screens/Splash_Screen/Splash/onboardingscreen.dart';
@@ -42,7 +44,11 @@ class Routes {
 
       case categorydetailsScreenRoute:
         return MaterialPageRoute(builder: (context) => const CategoryDetails());
+      case catfordocScreenRoute:
+        return MaterialPageRoute(builder: (context) => const CatforDoc());
 
+      case stepperprocessScreenRoute:
+        return MaterialPageRoute(builder: (context) => const StepperPross());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

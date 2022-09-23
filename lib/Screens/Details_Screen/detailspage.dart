@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_downloader/image_downloader.dart';
+import 'package:mygovern/Logic/Widgets/pdf_download.dart';
+import 'package:mygovern/Logic/Widgets/stepper.dart';
 import 'dart:math' as math;
 import '../../Logic/Widgets/drawer.dart';
-import '../../Screens/Home_Screen/homepage.dart';
 
 class DocStepperView extends StatefulWidget {
   const DocStepperView({super.key});
@@ -97,7 +98,8 @@ class _DocStepperViewState extends State<DocStepperView> {
             content: Center(
                 child: Column(
               children: [
-                Image.asset("assets/images/panchnamu.png"),
+                // Image.asset("assets/images/panchnamu.png"),
+
                 TextButton(
                     onPressed: () async {
                       try {
@@ -110,7 +112,7 @@ class _DocStepperViewState extends State<DocStepperView> {
                         print(error);
                       }
                     },
-                    child: Text("Click here to Download"))
+                    child: Pdf_demo_card())
               ],
             ))),
         Step(
@@ -279,18 +281,12 @@ class _DocStepperViewState extends State<DocStepperView> {
                 focusColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 icon: SvgPicture.asset(
-                  "assets/icons/search.svg",
+                  "assets/icons/bookmark.svg",
                   height: 22,
                   width: 30,
                   color: Colors.white,
                 ),
-                onPressed: () async {
-                  var result = await showSearch<String>(
-                    context: context,
-                    delegate: CustomDelegate(),
-                  );
-                  setState(() => result = result);
-                });
+                onPressed: () async {});
           }),
         ],
         flexibleSpace: Container(

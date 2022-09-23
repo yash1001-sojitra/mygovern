@@ -82,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, stepperdetailsScreenRoute);
+                      Navigator.pushNamed(context, catfordocScreenRoute);
                     },
                     child: DocCard1(
                       documentname: documentsname[index],
