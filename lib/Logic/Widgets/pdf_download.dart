@@ -14,11 +14,11 @@ class Pdf_demo_card extends StatelessWidget {
             height: 40,
             width: 40,
           ),
-          title: Text(
+          title: const Text(
             "Download Document",
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.start,
-            style: const TextStyle(
+            style: TextStyle(
                 fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
           ),
         ),
