@@ -67,7 +67,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
             break;
           }
         }
-        newPath = newPath + "/PDF_Download";
+        newPath = newPath + "/MyGovern";
         directory = Directory(newPath);
 
         File saveFile = File(directory.path + "/$fileName");
