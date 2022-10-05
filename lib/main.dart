@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mygovern/Logic/Services/firestore/category_firestore_services.dart';
 import 'package:mygovern/Logic/Services/firestore/documentdata_firestore_services.dart';
@@ -9,7 +10,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setInt("initScreen", 1);
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   runApp(MultiProvider(
     providers: [

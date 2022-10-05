@@ -34,9 +34,11 @@ dependencies:
   flutter_search_bar: ^2.1.0
 
 #firebase
+  firebase_core: ^1.17.1
   firebase_storage: ^10.2.18
   cloud_firestore: ^2.5.4
   provider: ^6.0.3
+  uuid: ^3.0.6
   shared_preferences: ^2.0.15
 
 #image --> svg, cachednetwork
