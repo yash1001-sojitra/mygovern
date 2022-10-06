@@ -220,6 +220,7 @@ class CustomDelegate extends SearchDelegate<String> {
       itemCount: listToShow.length,
       itemBuilder: (_, i) {
         var list = listToShow[i];
+        
         return GestureDetector(
           onTap: () {
             Navigator.push(

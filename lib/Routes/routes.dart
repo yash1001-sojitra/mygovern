@@ -44,7 +44,10 @@ class Routes {
         return MaterialPageRoute(builder: (context) => const DocStepperView());
 
       case categorydetailsScreenRoute:
-        return MaterialPageRoute(builder: (context) => const CategoryDetails());
+        return MaterialPageRoute(
+            builder: (context) => CategoryDetails(
+                  categoryname: args,
+                ));
       case catfordocScreenRoute:
         return MaterialPageRoute(
             builder: (context) => CatforDoc(

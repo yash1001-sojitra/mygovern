@@ -11,7 +11,8 @@ import '../../Logic/Widgets/drawer.dart';
 import '../Home_Screen/homepage.dart';
 
 class CategoryDetails extends StatefulWidget {
-  const CategoryDetails({super.key});
+  String categoryname;
+  CategoryDetails({required this.categoryname, super.key});
 
   @override
   State<CategoryDetails> createState() => _CategoryDetailsState();
@@ -49,9 +50,13 @@ class _CategoryDetailsState extends State<CategoryDetails> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
-        title: Text(
-          "નાગરિક સેવાઓ",
-        ),
+        title: Flexible(
+            child: Text(
+          widget.categoryname,
+          softWrap: true,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        )),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {

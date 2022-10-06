@@ -5,6 +5,7 @@ import 'package:mygovern/Core/Constant/string.dart';
 import 'package:mygovern/Core/Theme/app_theme.dart';
 import 'package:mygovern/Logic/Widgets/document_card.dart';
 import 'package:mygovern/Logic/Widgets/document_card2.dart';
+import 'package:mygovern/Screens/Details_Screen/category_details.dart';
 import 'package:provider/provider.dart';
 
 import '../../Logic/Modules/add_category_model.dart';
@@ -127,15 +128,15 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 170,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: documentsname.length,
+                itemCount: categorys.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, categorydetailsScreenRoute,
-                          arguments: documentsname[index]);
+                          arguments: categorys[index]);
                     },
                     child: DocCard2(
-                      documentname: documentsname[index],
+                      documentname: categorys[index],
                       documentimage: "assets/icons/" + categoryicon[index],
                     ),
                   );
