@@ -60,7 +60,7 @@ class Drawerbtn extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Divider(),
+            const Divider(),
             const SizedBox(
               height: 20,
             ),
@@ -83,10 +83,10 @@ class Drawerbtn extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Divider(),
+            const Divider(),
             Expanded(
                 child: Align(
               alignment: Alignment.bottomCenter,
