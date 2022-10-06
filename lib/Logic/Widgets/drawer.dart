@@ -12,7 +12,8 @@ class Drawerbtn extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 1.25,
       child: Drawer(
-        backgroundColor: const Color(0xFFCDCDCD),
+        // backgroundColor: const Color(0xFFCDCDCD),
+        backgroundColor: Colors.white,
         child: Column(
           children: <Widget>[
             const SizedBox(
@@ -21,6 +22,9 @@ class Drawerbtn extends StatelessWidget {
             SizedBox(
               height: 200,
               child: DrawerHeader(
+                decoration: const BoxDecoration(
+                  color: Colors.transparent,
+                ),
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
@@ -28,9 +32,6 @@ class Drawerbtn extends StatelessWidget {
                     "assets/images/jansevadrawer.png",
                     fit: BoxFit.contain,
                   ),
-                ),
-                decoration: const BoxDecoration(
-                  color: Colors.transparent,
                 ),
               ),
             ),

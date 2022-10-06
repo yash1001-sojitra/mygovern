@@ -30,6 +30,11 @@ class _CatforDocState extends State<CatforDoc> {
       "ડાઉનલોડ ડોક્યુમેન્ટ"
     ];
 
+    List documenturl = [
+      "https://www.digitalgujarat.gov.in/DownLoad/pdfforms/s63.pdf",
+      "https://www.digitalgujarat.gov.in/DownLoad/pdfforms/s76.pdf",
+    ];
+
     List caticon = ["process.png", "steps.png", "download.png"];
     return Scaffold(
       drawerEnableOpenDragGesture: true,
@@ -82,7 +87,8 @@ class _CatforDocState extends State<CatforDoc> {
               } else if (index == 1) {
                 Navigator.pushNamed(context, stepperprocessScreenRoute);
               } else if (index == 2) {
-                const url = "http://www.africau.edu/images/default/sample.pdf";
+                const url =
+                    "https://www.digitalgujarat.gov.in/DownLoad/pdfforms/s63.pdf";
                 final file = await loadPdfFromNetwork(url);
                 openPdf(context, file, url);
               }
