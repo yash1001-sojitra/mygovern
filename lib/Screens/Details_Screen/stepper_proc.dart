@@ -68,28 +68,6 @@ class _StepperProssState extends State<StepperPross> {
           },
         ),
         elevation: 0,
-        actions: [
-          Builder(builder: (context) {
-            return IconButton(
-                splashColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                icon: SvgPicture.asset(
-                  "assets/icons/search.svg",
-                  height: 22,
-                  width: 30,
-                  color: Colors.white,
-                ),
-                onPressed: () async {
-                  var result = await showSearch<String>(
-                    context: context,
-                    delegate: CustomDelegate(),
-                  );
-                  setState(() => result = result);
-                });
-          }),
-        ],
         flexibleSpace: Container(
           decoration: const BoxDecoration(color: Color(0xff1a1a1a)),
         ),
