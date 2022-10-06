@@ -251,6 +251,7 @@ class _DocStepperViewState extends State<DocStepperView> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
+        title: Text("Document Process"),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {

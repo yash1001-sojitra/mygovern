@@ -33,7 +33,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
-        // title: Text("Bookmark"),
+        title: pageIndex == 0
+            ? Text("HomePage")
+            : pageIndex == 1
+                ? Text("BookMark")
+                : pageIndex == 2
+                    ? Text("Recent")
+                    : Text(""),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {

@@ -28,6 +28,7 @@ class CatforDoc extends StatelessWidget {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
+        title: Text("Details"),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {

@@ -45,6 +45,7 @@ class _StepperProssState extends State<StepperPross> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
+        title: Text("Document Steps"),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {

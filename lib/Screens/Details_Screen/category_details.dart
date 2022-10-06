@@ -49,6 +49,9 @@ class _CategoryDetailsState extends State<CategoryDetails> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
+        title: Text(
+          "નાગરિક સેવાઓ",
+        ),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {
@@ -100,36 +103,19 @@ class _CategoryDetailsState extends State<CategoryDetails> {
       drawer: const Drawerbtn(),
       body: Padding(
         padding: const EdgeInsets.only(top: 20.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Text(
-                    "નાગરિક સેવાઓ",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            Divider(),
-            GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.8, crossAxisCount: 3),
-              itemCount: documentsname.length,
-              // padding: EdgeInsets.all(10),
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                return DocCard3(
-                    documentname: documentsname[index],
-                    documentimage: "assets/icons/national.png",
-                    color: Color(
-                        int.parse(colors[Random().nextInt(colors.length)])));
-              },
-            ),
-          ],
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 0.8, crossAxisCount: 3),
+          itemCount: documentsname.length,
+          // padding: EdgeInsets.all(10),
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context, int index) {
+            return DocCard3(
+                documentname: documentsname[index],
+                documentimage: "assets/icons/national.png",
+                color:
+                    Color(int.parse(colors[Random().nextInt(colors.length)])));
+          },
         ),
       ),
     );

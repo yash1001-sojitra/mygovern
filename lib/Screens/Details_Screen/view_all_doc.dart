@@ -59,6 +59,7 @@ class _ViewAllDocState extends State<ViewAllDoc> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
+        title: Text("All Services"),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {
