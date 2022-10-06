@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mygovern/Logic/Widgets/document_card3.dart';
+import 'package:provider/provider.dart';
 import 'dart:math' as math;
+import '../../Logic/Modules/add_category_model.dart';
 import '../../Logic/Widgets/document_card2.dart';
 import '../../Logic/Widgets/drawer.dart';
 import '../Home_Screen/homepage.dart';
@@ -40,6 +42,10 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   ];
   @override
   Widget build(BuildContext context) {
+    final categoryList = Provider.of<List<CategoryData>?>(context);
+    for (var i = 0; i < categoryList!.length; i++) {
+      print(categoryList[i].categoryname);
+    }
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
@@ -94,19 +100,36 @@ class _CategoryDetailsState extends State<CategoryDetails> {
       drawer: const Drawerbtn(),
       body: Padding(
         padding: const EdgeInsets.only(top: 20.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 0.8, crossAxisCount: 3),
-          itemCount: documentsname.length,
-          // padding: EdgeInsets.all(10),
-          shrinkWrap: true,
-          itemBuilder: (BuildContext context, int index) {
-            return DocCard3(
-              documentname: documentsname[index],
-              documentimage: "assets/icons/national.png",
-              color: Color(int.parse(colors[Random().nextInt(colors.length)])),
-            );
-          },
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Text(
+                    "નાગરિક સેવાઓ",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            Divider(),
+            GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  childAspectRatio: 0.8, crossAxisCount: 3),
+              itemCount: documentsname.length,
+              // padding: EdgeInsets.all(10),
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                return DocCard3(
+                    documentname: documentsname[index],
+                    documentimage: "assets/icons/national.png",
+                    color: Color(
+                        int.parse(colors[Random().nextInt(colors.length)])));
+              },
+            ),
+          ],
         ),
       ),
     );

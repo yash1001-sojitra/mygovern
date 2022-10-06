@@ -5,12 +5,25 @@ import 'package:mygovern/Core/Constant/string.dart';
 import 'package:mygovern/Core/Theme/app_theme.dart';
 import 'package:mygovern/Logic/Widgets/document_card.dart';
 import 'package:mygovern/Logic/Widgets/document_card2.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+import '../../Logic/Modules/add_category_model.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
+    final categoryList = Provider.of<List<CategoryData>?>(context);
+    for (var i = 0; i < categoryList!.length; i++) {
+      print(categoryList[i].id);
+    }
+
     List documentsname = [
       "આવક પ્રમાણપત્ર",
       "નોન ક્રીમી લેયર પ્રમાણપત્ર",
@@ -112,14 +125,14 @@ class HomeScreen extends StatelessWidget {
               height: 170,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 5,
+                itemCount: documentsname.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, categorydetailsScreenRoute);
                     },
                     child: DocCard2(
-                      documentname: categorys[index],
+                      documentname: documentsname[index],
                       documentimage: "assets/icons/" + categoryicon[index],
                     ),
                   );

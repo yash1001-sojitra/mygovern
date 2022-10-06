@@ -1,12 +1,12 @@
 class CategoryData {
   String id;
-  String category;
+  String categoryname;
   late String url;
   DateTime time;
 
   CategoryData({
     required this.id,
-    required this.category,
+    required this.categoryname,
     required this.url,
     required this.time,
   });
@@ -14,7 +14,7 @@ class CategoryData {
   Map<String, dynamic> createMap() {
     return {
       'Id': id,
-      'Category': category,
+      'Category': categoryname,
       'url': url,
       'time': time,
     };
@@ -22,7 +22,7 @@ class CategoryData {
 
   CategoryData.fromFirestore(Map<String, dynamic> firestoreMap)
       : id = firestoreMap['Id'],
-        category = firestoreMap['Category'],
+        categoryname = firestoreMap['Category'],
         url = firestoreMap['url'],
         time = firestoreMap['time'].toDate();
 
