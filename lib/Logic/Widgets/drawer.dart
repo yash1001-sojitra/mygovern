@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mygovern/Core/Theme/app_theme.dart';
+import 'package:mygovern/Screens/drawerscreens/aboutus.dart';
+import 'package:mygovern/Screens/drawerscreens/setting.dart';
 
 class Drawerbtn extends StatelessWidget {
   const Drawerbtn({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class Drawerbtn extends StatelessWidget {
         backgroundColor: const Color(0xFFCDCDCD),
         child: Column(
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             SizedBox(
@@ -23,7 +25,7 @@ class Drawerbtn extends StatelessWidget {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   child: Image.asset(
-                    "assets/images/Mygov.png",
+                    "assets/images/jansevadrawer.png",
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -33,8 +35,57 @@ class Drawerbtn extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
             ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Setting(),
+                  ),
+                );
+              },
+              child: const Text(
+                'Settings',
+                style: TextStyle(
+                    letterSpacing: 3,
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Divider(),
+            const SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AboutUs(),
+                  ),
+                );
+              },
+              child: const Text(
+                'About Us',
+                style: TextStyle(
+                    fontSize: 20,
+                    letterSpacing: 3,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Divider(),
             Expanded(
                 child: Align(
               alignment: Alignment.bottomCenter,

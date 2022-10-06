@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../Logic/Widgets/bookmark_card.dart';
+import '../category_for_document/cat_for_doc.dart';
 
 class RecentScreen extends StatefulWidget {
   const RecentScreen({super.key});
@@ -54,10 +55,25 @@ class _RecentScreenState extends State<RecentScreen> {
         : ListView.builder(
             itemCount: bookmarkname.length,
             itemBuilder: (context, index) {
-              return BookmarkCard(
-                documentname: bookmarkname[index],
-                documentimage: "assets/icons/" + bookmarkicon[index],
-                documentsubtitle: subtitle[index],
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CatforDoc(
+                        documentname: bookmarkname[index],
+                      ),
+                      settings: RouteSettings(
+                        arguments: bookmarkname[index],
+                      ),
+                    ),
+                  );
+                },
+                child: BookmarkCard(
+                  documentname: bookmarkname[index],
+                  documentimage: "assets/icons/" + bookmarkicon[index],
+                  documentsubtitle: subtitle[index],
+                ),
               );
             },
           );
