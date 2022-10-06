@@ -8,6 +8,7 @@ import 'package:mygovern/Logic/Widgets/document_card2.dart';
 import 'package:provider/provider.dart';
 
 import '../../Logic/Modules/add_category_model.dart';
+import '../category_for_document/cat_for_doc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     List documentsname = [
       "આવક પ્રમાણપત્ર",
-      "નોન ક્રીમી લેયર પ્રમાણપત્ર",
+      "નોન ક્રિમિલિયર પ્રમાણપત્ર",
       "ડોમિસાઇલ સર્ટિફિકેટ",
       "વિધવા સહાય પ્રમાણપત્ર",
       "વારસાઈ પ્રમાણપત્ર"
@@ -95,7 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, catfordocScreenRoute);
+                      Navigator.pushNamed(context, catfordocScreenRoute,
+                          arguments: documentsname[index]);
                     },
                     child: DocCard1(
                       documentname: documentsname[index],
@@ -129,7 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, categorydetailsScreenRoute);
+                      Navigator.pushNamed(context, categorydetailsScreenRoute,
+                          arguments: documentsname[index]);
                     },
                     child: DocCard2(
                       documentname: documentsname[index],

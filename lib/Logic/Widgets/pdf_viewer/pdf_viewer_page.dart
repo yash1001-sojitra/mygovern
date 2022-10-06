@@ -32,7 +32,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
         actions: [
           IconButton(
             onPressed: () async {
-              await saveFile(widget.url, "sample.pdf");
+              await saveFile(widget.url, "Sample.pdf");
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text(

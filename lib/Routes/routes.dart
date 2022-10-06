@@ -21,6 +21,7 @@ class Routes {
   }
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    final args = settings.arguments as dynamic;
     switch (settings.name) {
 
       //splash screens
@@ -45,7 +46,10 @@ class Routes {
       case categorydetailsScreenRoute:
         return MaterialPageRoute(builder: (context) => const CategoryDetails());
       case catfordocScreenRoute:
-        return MaterialPageRoute(builder: (context) => const CatforDoc());
+        return MaterialPageRoute(
+            builder: (context) => CatforDoc(
+                  documentname: args,
+                ));
 
       case stepperprocessScreenRoute:
         return MaterialPageRoute(builder: (context) => const StepperPross());

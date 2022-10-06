@@ -13,9 +13,15 @@ import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import '../../Logic/Widgets/pdf_viewer/pdf_viewer_page.dart';
 
-class CatforDoc extends StatelessWidget {
-  const CatforDoc({super.key});
+class CatforDoc extends StatefulWidget {
+  String documentname;
+  CatforDoc({required this.documentname, super.key});
 
+  @override
+  State<CatforDoc> createState() => _CatforDocState();
+}
+
+class _CatforDocState extends State<CatforDoc> {
   @override
   Widget build(BuildContext context) {
     List catfordoc = [
@@ -28,7 +34,14 @@ class CatforDoc extends StatelessWidget {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
-        title: Text("Details"),
+        title: Flexible(
+            child: Text(
+          widget.documentname,
+          softWrap: true,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        )),
+        // Text(widget.documentname),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {

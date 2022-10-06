@@ -178,7 +178,7 @@ class CustomDelegate extends SearchDelegate<String> {
 
     List<String> bookmarkname = [
       // "આધાર કાર્ડ",
-      "aadharcard",
+      "આધાર કાર્ડ",
       "પાન કાર્ડ",
       "એલ આઇ સી વીમા",
       "રેશન કાર્ડ",
@@ -197,18 +197,21 @@ class CustomDelegate extends SearchDelegate<String> {
       "દેશની નાગરિકતા"
     ];
     List documentlist = [];
+
     List<String> listToShow;
+
     List<String> documentnames = [];
+
     // for (var element in documentlist) {
     //   documentnames.add(element.documentName.toLowerCase());
     // }
     for (var element in bookmarkname) {
-      documentnames.add(element.toString());
+      documentnames.add(element);
     }
+
     if (query.isNotEmpty) {
       listToShow = documentnames
-          .where((e) =>
-              e.contains(query.toString()) && e.startsWith(query.toString()))
+          .where((e) => e.contains(query.toString()) && e.startsWith(query))
           .toList();
     } else {
       listToShow = documentnames;
@@ -216,13 +219,15 @@ class CustomDelegate extends SearchDelegate<String> {
     return ListView.builder(
       itemCount: listToShow.length,
       itemBuilder: (_, i) {
-        var listshow = listToShow[i];
+        var list = listToShow[i];
         return GestureDetector(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const CatforDoc(),
+                builder: (context) => CatforDoc(
+                  documentname: documentnames[i],
+                ),
                 settings: RouteSettings(
                   arguments: documentnames[i],
                 ),
@@ -230,7 +235,7 @@ class CustomDelegate extends SearchDelegate<String> {
             );
           },
           child: BookmarkCard(
-              documentname: bookmarkname[i],
+              documentname: listToShow[i],
               documentsubtitle: subtitle[i],
               documentimage: "assets/icons/" + "${bookmarkicon[i]}"),
         );
