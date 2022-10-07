@@ -1,12 +1,18 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mygovern/Logic/Widgets/document_card3.dart';
+import 'package:provider/provider.dart';
 import 'dart:math' as math;
+import '../../Logic/Modules/add_category_model.dart';
 import '../../Logic/Widgets/document_card2.dart';
 import '../../Logic/Widgets/drawer.dart';
 import '../Home_Screen/homepage.dart';
 
 class CategoryDetails extends StatefulWidget {
-  const CategoryDetails({super.key});
+  String categoryname;
+  CategoryDetails({required this.categoryname, super.key});
 
   @override
   State<CategoryDetails> createState() => _CategoryDetailsState();
@@ -23,11 +29,34 @@ class _CategoryDetailsState extends State<CategoryDetails> {
     "સ્થળાંતર કરવાને કારણે રેશનકાર્ડમાં કમી કર્યાની નોંધ કરવા",
     "નવી પંડીત દીનદયાલ ગ્રાહક ભંડાર (વ્યાજબી ભાવની સરકાર માન્ય દુકાન) મંજુર કરવા"
   ];
+
+  List colors = [
+    "0xffCD5C5C",
+    "0xffDFFF00",
+    "0xff40E0D0",
+    "0xff6495ED",
+    "0xffDE3163",
+    "0xffFFBF00",
+    "0xff008000",
+    "0xff800080",
+    "0xff808080",
+  ];
   @override
   Widget build(BuildContext context) {
+    final categoryList = Provider.of<List<CategoryData>?>(context);
+    for (var i = 0; i < categoryList!.length; i++) {
+      print(categoryList[i].categoryname);
+    }
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
+        title: Flexible(
+            child: Text(
+          widget.categoryname,
+          softWrap: true,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        )),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {
@@ -81,14 +110,16 @@ class _CategoryDetailsState extends State<CategoryDetails> {
         padding: const EdgeInsets.only(top: 20.0),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 0.6, crossAxisCount: 3),
+              childAspectRatio: 0.8, crossAxisCount: 3),
           itemCount: documentsname.length,
           // padding: EdgeInsets.all(10),
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
-            return DocCard2(
+            return DocCard3(
                 documentname: documentsname[index],
-                documentimage: "assets/images/Mygov.png");
+                documentimage: "assets/icons/national.png",
+                color:
+                    Color(int.parse(colors[Random().nextInt(colors.length)])));
           },
         ),
       ),

@@ -15,6 +15,11 @@ const String searchScreenRoute = '/searchScreenRoute';
 const String viewalldocScreenRoute = '/viewalldocScreenRoute';
 const String stepperdetailsScreenRoute = '/stepperdetailsScreenRoute';
 const String categorydetailsScreenRoute = '/categorydetailsScreenRoute';
+const String catfordocScreenRoute = '/catfirdetauksScreenRoute';
+
+const String stepperprocessScreenRoute = '/stepperproccessScreenRoute';
+
+
 
 
 //****************End-Routes***********************

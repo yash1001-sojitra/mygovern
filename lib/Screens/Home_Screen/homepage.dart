@@ -3,10 +3,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mygovern/Logic/Widgets/bookmark_card.dart';
+
 import 'package:mygovern/Screens/BottomBar_Screen/bookmark.dart';
 import 'package:mygovern/Screens/BottomBar_Screen/home_screen.dart';
 import 'package:mygovern/Screens/BottomBar_Screen/recent.dart';
 import 'package:mygovern/Screens/Details_Screen/detailspage.dart';
+import 'package:mygovern/Screens/category_for_document/cat_for_doc.dart';
+
 import 'dart:math' as math;
 import '../../Logic/Widgets/drawer.dart';
 
@@ -31,6 +35,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
+        title: pageIndex == 0
+            ? Text("HomePage")
+            : pageIndex == 1
+                ? Text("BookMark")
+                : pageIndex == 2
+                    ? Text("Recent")
+                    : Text(""),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {
@@ -155,18 +166,52 @@ class CustomDelegate extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     // final animalList = Provider.of<List<CardData>?>(context);
+    List bookmarkicon = [
+      "aadhaar.png",
+      "pancard.png",
+      "lic.png",
+      "rationcard.png",
+      "ayushman.png",
+      "voter.png",
+      "passport.png",
+    ];
+
+    List<String> bookmarkname = [
+      // "આધાર કાર્ડ",
+      "આધાર કાર્ડ",
+      "પાન કાર્ડ",
+      "એલ આઇ સી વીમા",
+      "રેશન કાર્ડ",
+      "આયુષ્માન કાર્ડ",
+      "મતદાર કાર્ડ",
+      "પાસપોર્ટ"
+    ];
+
+    List subtitle = [
+      "અનન્ય ઓળખ સત્તા",
+      "આવક ટેક્સ વિભાગ",
+      "જીવન વીમા યોજના",
+      "કાનૂની ઓળખ પુરાવો",
+      "તબીબી તપાસ, સારવાર અને કન્સલ્ટેશન ફી માટે કવરેજ પૂરું પાડે ",
+      "ચૂંટણી પંચ દ્વારા જારી કરાયેલ ઓળખ દસ્તાવેજ",
+      "દેશની નાગરિકતા"
+    ];
     List documentlist = [];
+
     List<String> listToShow;
+
     List<String> documentnames = [];
-    for (var element in documentlist) {
-      documentnames.add(element.documentName.toLowerCase());
+
+    // for (var element in documentlist) {
+    //   documentnames.add(element.documentName.toLowerCase());
+    // }
+    for (var element in bookmarkname) {
+      documentnames.add(element);
     }
 
     if (query.isNotEmpty) {
       listToShow = documentnames
-          .where((e) =>
-              e.contains(query.toLowerCase()) &&
-              e.startsWith(query.toLowerCase()))
+          .where((e) => e.contains(query.toString()) && e.startsWith(query))
           .toList();
     } else {
       listToShow = documentnames;
@@ -174,20 +219,26 @@ class CustomDelegate extends SearchDelegate<String> {
     return ListView.builder(
       itemCount: listToShow.length,
       itemBuilder: (_, i) {
-        var animals = listToShow[i];
-        return ListTile(
-          title: Text(animals),
+        var list = listToShow[i];
+
+        return GestureDetector(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const DocStepperView(),
+                builder: (context) => CatforDoc(
+                  documentname: documentnames[i],
+                ),
                 settings: RouteSettings(
                   arguments: documentnames[i],
                 ),
               ),
             );
           },
+          child: BookmarkCard(
+              documentname: listToShow[i],
+              documentsubtitle: subtitle[i],
+              documentimage: "assets/icons/" + "${bookmarkicon[i]}"),
         );
       },
     );

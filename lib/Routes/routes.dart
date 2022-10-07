@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:mygovern/Core/Constant/string.dart';
 import 'package:mygovern/Screens/Details_Screen/category_details.dart';
 import 'package:mygovern/Screens/Details_Screen/detailspage.dart';
+import 'package:mygovern/Screens/Details_Screen/stepper_proc.dart';
 import 'package:mygovern/Screens/Details_Screen/view_all_doc.dart';
 import 'package:mygovern/Screens/Home_Screen/homepage.dart';
+import 'package:mygovern/Screens/category_for_document/cat_for_doc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Screens/Splash_Screen/Splash/onboardingscreen.dart';
@@ -19,6 +21,7 @@ class Routes {
     initScreen = prefs.getInt("initScreen")!;
   }
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    final args = settings.arguments as dynamic;
     switch (settings.name) {
 
       //splash screens
@@ -42,8 +45,18 @@ class Routes {
         return MaterialPageRoute(builder: (context) => const DocStepperView());
 
       case categorydetailsScreenRoute:
-        return MaterialPageRoute(builder: (context) => const CategoryDetails());
+        return MaterialPageRoute(
+            builder: (context) => CategoryDetails(
+                  categoryname: args,
+                ));
+      case catfordocScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => CatforDoc(
+                  documentname: args,
+                ));
 
+      case stepperprocessScreenRoute:
+        return MaterialPageRoute(builder: (context) => const StepperPross());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

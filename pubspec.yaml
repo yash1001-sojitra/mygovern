@@ -34,22 +34,31 @@ dependencies:
   flutter_search_bar: ^2.1.0
 
 #firebase
+  firebase_core: ^1.17.1
   firebase_storage: ^10.2.18
   cloud_firestore: ^2.5.4
   provider: ^6.0.3
+  uuid: ^3.0.6
   shared_preferences: ^2.0.15
 
 #image --> svg, cachednetwork
   flutter_svg: ^1.0.3
   cached_network_image: ^3.2.0
   lottie: ^1.2.1
-  file_picker:
+  # file_picker: 
   image_downloader: ^0.31.0
-
+  dio: ^4.0.6  
+  # file_picker: ^4.5.1  
+  flutter_pdfview: ^1.2.2
+  path_provider: ^2.0.10
+  babstrap_settings_screen: ^0.1.3
+  about: ^2.1.1
+  flutter_image_compress: ^1.0.0-nullsafety
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  permission_handler: ^10.0.1
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +88,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/json/
+    - assets/file/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

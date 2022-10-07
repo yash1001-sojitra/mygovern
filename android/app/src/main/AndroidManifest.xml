@@ -1,11 +1,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mygovern">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<<<<<<< HEAD
 
     <application
         android:label="mygovern"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+=======
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+   <application
+        android:label="Janseva Point"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+       
+>>>>>>> 6577b4369246d29f1395209f6be580b1836de9a2
         <activity
             android:name=".MainActivity"
             android:exported="true"
