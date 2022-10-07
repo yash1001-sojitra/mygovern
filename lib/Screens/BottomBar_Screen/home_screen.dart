@@ -44,6 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
       "national.png"
     ];
 
+   
+
     return SingleChildScrollView(
       child: Container(
         // width: MediaQuery.of(context).size.width,
@@ -107,8 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         return GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, catfordocScreenRoute,
-                                arguments: snapshot.data!.docs[index]
-                                    ['document']);
+                                arguments: 
+                                  snapshot.data!.docs[index]['document'],
+                            )
+                                ;
                           },
                           child: DocCard1(
                             documentname: snapshot.data!.docs[index]
