@@ -28,6 +28,7 @@ class _CatforDocState extends State<CatforDoc> {
       "ડોક્યુમેન્ટ સ્ટેપ્સ",
       "ડાઉનલોડ ડોક્યુમેન્ટ",
       "ડોક્યુમેન્ટ રીક્વેસ્ટ",
+      "ડોક્યુમેન્ટ રીક્વેસ્ટ",
     ];
 
     List documenturl = [
@@ -35,7 +36,13 @@ class _CatforDocState extends State<CatforDoc> {
       "https://www.digitalgujarat.gov.in/DownLoad/pdfforms/s76.pdf",
     ];
 
-    List caticon = ["process.png", "steps.png", "download.png", "request.png"];
+    List caticon = [
+      "process.png",
+      "steps.png",
+      "download.png",
+      "request.png",
+      "request.png"
+    ];
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
@@ -78,7 +85,7 @@ class _CatforDocState extends State<CatforDoc> {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
-        itemCount: 4,
+        itemCount: 5,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () async {
@@ -91,6 +98,7 @@ class _CatforDocState extends State<CatforDoc> {
                     "https://www.digitalgujarat.gov.in/DownLoad/pdfforms/s63.pdf";
                 final file = await loadPdfFromNetwork(url);
                 openPdf(context, file, url);
+              } else if (index == 3) {
               } else {
                 Navigator.pushNamed(context, requestDocListScreenRoute);
               }

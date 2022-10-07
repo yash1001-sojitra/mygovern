@@ -179,7 +179,7 @@ class _SignInpageState extends State<SignInpage> {
 
                           showAlert == true
                               ? null
-                              : progressIndicater(context, showLoading = true);
+                              : progressIndicater(context, showLoading = false);
                           emailController.clear();
                           passwordController.clear();
                           // Navigator.pushNamed(context, homepageScreenRoute);
@@ -246,9 +246,10 @@ class _SignInpageState extends State<SignInpage> {
                         style: ElevatedButton.styleFrom(
                             minimumSize: const Size.fromHeight(50)),
                         onPressed: () async {
-                          await userDataProvider.signInWithGoogle();
+                          bool val = await userDataProvider.signInWithGoogle();
                           // await GoogleSignIn().signIn();
-                          Navigator.pushNamed(context, homepageScreenRoute);
+                          if (val)
+                            Navigator.pushNamed(context, homepageScreenRoute);
                         },
                         icon: SizedBox(
                           height: 25,
@@ -271,6 +272,7 @@ class _SignInpageState extends State<SignInpage> {
     if (showLoading == true) {
       return showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (BuildContext context) {
             return const Center(
               child: CircularProgressIndicator(),
