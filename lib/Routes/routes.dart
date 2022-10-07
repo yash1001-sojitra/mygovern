@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Screens/Authentication/signinpage.dart';
 import '../Screens/Authentication/signuppage.dart';
+import '../Screens/Document_pdf_generator/invoices.dart';
 import '../Screens/Splash_Screen/Splash/splashscreen.dart';
 
 class Routes {
@@ -72,6 +73,9 @@ class Routes {
       case requestDocListScreenRoute:
         return MaterialPageRoute(
             builder: (context) => const RequestDocumentList());
+
+      case invoiceScreenRoute:
+        return MaterialPageRoute(builder: (context) => InvoicePage());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

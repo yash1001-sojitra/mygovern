@@ -21,8 +21,9 @@ const String stepperprocessScreenRoute = '/stepperproccessScreenRoute';
 
 const String requestDocListScreenRoute = '/requestDocListScreenRoute';
 
-
 const String ForgotpassScreenRoute = '/forgotpass';
 const String singInScreenRoute = '/singInScreenRoute';
 const String signUpScreenRoute = '/signUpScreenRoute';
+
+const String invoiceScreenRoute = '/inviceScreenRoute';
 //****************End-Routes***********************

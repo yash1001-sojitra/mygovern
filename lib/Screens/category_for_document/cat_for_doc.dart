@@ -99,6 +99,7 @@ class _CatforDocState extends State<CatforDoc> {
                 final file = await loadPdfFromNetwork(url);
                 openPdf(context, file, url);
               } else if (index == 3) {
+                Navigator.pushNamed(context, invoiceScreenRoute);
               } else {
                 Navigator.pushNamed(context, requestDocListScreenRoute);
               }
@@ -106,6 +107,7 @@ class _CatforDocState extends State<CatforDoc> {
             child: Cardfordetails(
               catname: catfordoc[index],
               catimage: "assets/icons/" + caticon[index],
+              
             ),
           );
         },
