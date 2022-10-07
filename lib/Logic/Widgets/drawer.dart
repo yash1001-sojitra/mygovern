@@ -1,12 +1,22 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:mygovern/Screens/Authentication/signinpage.dart';
 import 'package:mygovern/Screens/Profile/profile.dart';
 import 'package:mygovern/Screens/drawerscreens/aboutus.dart';
 import 'package:mygovern/Screens/drawerscreens/setting.dart';
 
-class Drawerbtn extends StatelessWidget {
+class Drawerbtn extends StatefulWidget {
   const Drawerbtn({Key? key}) : super(key: key);
-  final style = const TextStyle(fontSize: 24);
 
+  @override
+  State<Drawerbtn> createState() => _DrawerbtnState();
+}
+
+class _DrawerbtnState extends State<Drawerbtn> {
+  final style = const TextStyle(fontSize: 24);
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -56,6 +66,7 @@ class Drawerbtn extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Divider(),
+            const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -119,6 +130,29 @@ class Drawerbtn extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
+            const SizedBox(height: 20),
+            const Divider(),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () async {
+                await _signOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignInpage(),
+                  ),
+                );
+              },
+              child: const Text(
+                'Log Out',
+                style: TextStyle(
+                    fontSize: 20,
+                    letterSpacing: 3,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
+              ),
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -147,5 +181,10 @@ class Drawerbtn extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _signOut() async {
+    await _auth.signOut();
+    await _googleSignIn.signOut();
   }
 }

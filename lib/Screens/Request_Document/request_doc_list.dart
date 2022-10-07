@@ -19,6 +19,7 @@ class RequestDocumentList extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text('ડોક્યુમેન્ટ રીક્વેસ્ટ'),
       ),
       body: ListView.builder(
