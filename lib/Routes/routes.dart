@@ -35,7 +35,6 @@ class Routes {
       //   return MaterialPageRoute(
       //       builder: (context) => const OnboardingScreen());
 
-<<<<<<< HEAD
       // case authenticationScreenRoute:
       //   return MaterialPageRoute(builder: (context) => const SignUpScreen());
       // case forgotpassScreenRoute:
@@ -46,8 +45,6 @@ class Routes {
 
       case signUpScreenRoute:
         return MaterialPageRoute(builder: (context) => const SignupPage());
-=======
->>>>>>> 6735db21e144bcfbf0e450c968dfcbba2efc55ae
       // main screens
       case homepageScreenRoute:
         return MaterialPageRoute(builder: (context) => const HomePage());
