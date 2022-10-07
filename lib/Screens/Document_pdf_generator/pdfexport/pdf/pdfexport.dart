@@ -51,7 +51,7 @@ Future<Uint8List> makePdf(requireddataforpdf invoice) async {
                   children: [
                     Row(children: [
                       Text(
-                          "        હું  નીચે  સહી  કરનાર  શ્રી / શ્રીમતી / કુમારી  ",
+                          "        હું   નીચે   સહી   કરનાર   શ્રી   /   શ્રીમતી   /   કુમારી   ",
                           style: fontstyle),
                       Text("${invoice.name}", style: dottedstyle),
                     ]),
