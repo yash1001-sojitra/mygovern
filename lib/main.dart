@@ -6,6 +6,10 @@ import 'package:mygovern/Routes/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Logic/Provider/userData_provider.dart';
+import 'Logic/Services/firestore/auth_services/auth_service.dart';
+import 'Logic/Services/firestore/user_firestore_services.dart';
+
 Future<void> main() async {
   int? initScreen;
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,9 +21,23 @@ Future<void> main() async {
   runApp(MultiProvider(
     providers: [
       StreamProvider.value(
+        value: UserDataFirestoreService().getUserData(),
+        initialData: null,
+      ),
+      ChangeNotifierProvider.value(
+        value: UsereDataProvider(),
+      ),
+      Provider<AuthService>(
+        create: (_) => AuthService(),
+      ),
+      Provider<UserDataFirestoreService>(
+        create: (_) => UserDataFirestoreService(),
+      ),
+      StreamProvider.value(
         value: CategoryDataFirestoreService().getCategoryData(),
         initialData: null,
       ),
+
       // StreamProvider.value(
       //   value: DocumentDataFirestoreService().getDocumentData(),
       //   initialData: null,

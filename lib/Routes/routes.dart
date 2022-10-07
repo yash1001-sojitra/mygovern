@@ -10,16 +10,18 @@ import 'package:mygovern/Screens/Home_Screen/homepage.dart';
 import 'package:mygovern/Screens/category_for_document/cat_for_doc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Screens/Authentication/signinpage.dart';
+import '../Screens/Authentication/signuppage.dart';
 import '../Screens/Splash_Screen/Splash/onboardingscreen.dart';
 import '../Screens/Splash_Screen/Splash/splashscreen.dart';
 
 class Routes {
   late int initScreen;
   Future<void> checkForOnBordScreen() async {
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
     initScreen = prefs.getInt("initScreen")!;
   }
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments as dynamic;
     switch (settings.name) {
@@ -28,11 +30,20 @@ class Routes {
       case splashScreenRoute:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
 
-      case onboardingScreenRoute:
-        return MaterialPageRoute(
-            builder: (context) => const OnboardingScreen());
+      // case onboardingScreenRoute:
+      //   return MaterialPageRoute(
+      //       builder: (context) => const OnboardingScreen());
 
+      // case authenticationScreenRoute:
+      //   return MaterialPageRoute(builder: (context) => const SignUpScreen());
+      // case forgotpassScreenRoute:
+      //   return MaterialPageRoute(
+      //       builder: (context) => const ForgotpassScreen());
+      case singInScreenRoute:
+        return MaterialPageRoute(builder: (context) => const SignInpage());
 
+      case signUpScreenRoute:
+        return MaterialPageRoute(builder: (context) => const SignupPage());
       // main screens
       case homepageScreenRoute:
         return MaterialPageRoute(builder: (context) => const HomePage());

@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, depend_on_referenced_packages
 
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mygovern/Screens/Authentication/signinpage.dart';
+import 'package:mygovern/Screens/BottomBar_Screen/home_screen.dart';
 import 'package:mygovern/Screens/Home_Screen/homepage.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -13,17 +16,45 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool isNewUser = true;
+
+  int loginNum = 0;
+  var emailAddress;
   @override
   void initState() {
     super.initState();
+    checkUserType();
     Timer(
         const Duration(seconds: 5),
         () => {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
+                MaterialPageRoute(
+                    builder: (context) => loginNum == 1
+                        // && !isNewUser
+                        // ? const PasscodePage()
+                        ? const HomePage()
+                        : const SignInpage()),
               )
             });
+  }
+
+  checkUserType() {
+    var auth = FirebaseAuth.instance;
+    auth.authStateChanges().listen((user) {
+      if (user != null) {
+        user = auth.currentUser;
+        emailAddress = user!.email;
+
+        setState(() {
+          loginNum = 1;
+        });
+      } else {
+        setState(() {
+          loginNum = 2;
+        });
+      }
+    });
   }
 
   @override
