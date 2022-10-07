@@ -21,7 +21,7 @@ class InvoicePage extends StatelessWidget {
         lightbill: 1500,
         place: "Surat"),
     requireddataforpdf(
-        dateofbirth: "10-01-2002",
+        dateofbirth: "18-11-2002",
         address: "શેરી નં. 4, મારુતિનગર, ઘોઘા રોડ, ભાવનગર",
         phonenumber: "7359543703",
         name: "સિંધા વિપેન્દ્રાસિંહ",
@@ -31,9 +31,9 @@ class InvoicePage extends StatelessWidget {
         getincome: 4,
         income: 140000,
         lightbill: 1500,
-        place: "Surat"),
+        place: "Bhavnagar"),
     requireddataforpdf(
-        dateofbirth: "10-01-2002",
+        dateofbirth: "16-10-2002",
         address: "શેરી નં. 4, મારુતિનગર, ઘોઘા રોડ, ભાવનગર",
         phonenumber: "7359543703",
         name: "મેહુલ રામ",
@@ -43,9 +43,9 @@ class InvoicePage extends StatelessWidget {
         getincome: 4,
         income: 140000,
         lightbill: 1500,
-        place: "Surat"),
+        place: "Una"),
     requireddataforpdf(
-        dateofbirth: "10-01-2002",
+        dateofbirth: "13-05-2002",
         address: "107 surat gujarat india",
         phonenumber: "7359543703",
         name: "ધવલ તરસરિયા",
@@ -76,8 +76,8 @@ class InvoicePage extends StatelessWidget {
                 },
                 child: BookmarkCard(
                     documentname: e.name,
-                    documentsubtitle: e.documentname,
-                    documentimage: "assets/icons/aadhaar.png"),
+                    documentsubtitle: "અરજદારનો રૂબરૂ જવાબ",
+                    documentimage: "assets/icons/national.png"),
               ))
         ],
       ),
