@@ -5,7 +5,6 @@ import 'dart:math' as math;
 import '../../Logic/Widgets/card_for_details.dart';
 import '../../Logic/Widgets/drawer.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'dart:io';
 
 import 'package:path/path.dart';
@@ -27,7 +26,8 @@ class _CatforDocState extends State<CatforDoc> {
     List catfordoc = [
       "ડોક્યુમેન્ટ પ્રોસેસ",
       "ડોક્યુમેન્ટ સ્ટેપ્સ",
-      "ડાઉનલોડ ડોક્યુમેન્ટ"
+      "ડાઉનલોડ ડોક્યુમેન્ટ",
+      "ડોક્યુમેન્ટ રીક્વેસ્ટ",
     ];
 
     List documenturl = [
@@ -35,7 +35,7 @@ class _CatforDocState extends State<CatforDoc> {
       "https://www.digitalgujarat.gov.in/DownLoad/pdfforms/s76.pdf",
     ];
 
-    List caticon = ["process.png", "steps.png", "download.png"];
+    List caticon = ["process.png", "steps.png", "download.png", "request.png"];
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
@@ -78,7 +78,7 @@ class _CatforDocState extends State<CatforDoc> {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
-        itemCount: 3,
+        itemCount: 4,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () async {
@@ -91,6 +91,8 @@ class _CatforDocState extends State<CatforDoc> {
                     "https://www.digitalgujarat.gov.in/DownLoad/pdfforms/s63.pdf";
                 final file = await loadPdfFromNetwork(url);
                 openPdf(context, file, url);
+              } else {
+                Navigator.pushNamed(context, requestDocListScreenRoute);
               }
             },
             child: Cardfordetails(

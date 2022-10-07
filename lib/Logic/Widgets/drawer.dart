@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mygovern/Screens/Profile/profile.dart';
 import 'package:mygovern/Screens/drawerscreens/aboutus.dart';
 import 'package:mygovern/Screens/drawerscreens/setting.dart';
 
@@ -33,9 +34,29 @@ class Drawerbtn extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Profile(),
+                  ),
+                );
+              },
+              child: const Text(
+                'Profile',
+                style: TextStyle(
+                    letterSpacing: 3,
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
+              ),
             ),
+            const SizedBox(height: 20),
+            const Divider(),
+            const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -55,13 +76,9 @@ class Drawerbtn extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             const Divider(),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
                 Navigator.push(

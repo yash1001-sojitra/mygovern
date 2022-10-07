@@ -7,6 +7,7 @@ import 'package:mygovern/Screens/Details_Screen/detailspage.dart';
 import 'package:mygovern/Screens/Details_Screen/stepper_proc.dart';
 import 'package:mygovern/Screens/Details_Screen/view_all_doc.dart';
 import 'package:mygovern/Screens/Home_Screen/homepage.dart';
+import 'package:mygovern/Screens/Request_Document/request_doc_list.dart';
 import 'package:mygovern/Screens/category_for_document/cat_for_doc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,10 +17,10 @@ import '../Screens/Splash_Screen/Splash/splashscreen.dart';
 class Routes {
   late int initScreen;
   Future<void> checkForOnBordScreen() async {
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
     initScreen = prefs.getInt("initScreen")!;
   }
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments as dynamic;
     switch (settings.name) {
@@ -31,7 +32,6 @@ class Routes {
       case onboardingScreenRoute:
         return MaterialPageRoute(
             builder: (context) => const OnboardingScreen());
-
 
       // main screens
       case homepageScreenRoute:
@@ -57,6 +57,10 @@ class Routes {
 
       case stepperprocessScreenRoute:
         return MaterialPageRoute(builder: (context) => const StepperPross());
+
+      case requestDocListScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => const RequestDocumentList());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

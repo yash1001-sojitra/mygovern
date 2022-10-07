@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mygovern/Logic/Services/firestore/category_firestore_services.dart';
-import 'package:mygovern/Logic/Services/firestore/documentdata_firestore_services.dart';
 import 'package:mygovern/Routes/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,6 +41,7 @@ class MyApp extends StatelessWidget {
       //   Locale('gu', 'IN'),
       // ],
       // theme: AppTheme.lightTheme,
+
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,
     );

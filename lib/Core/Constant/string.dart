@@ -19,6 +19,8 @@ const String catfordocScreenRoute = '/catfirdetauksScreenRoute';
 
 const String stepperprocessScreenRoute = '/stepperproccessScreenRoute';
 
+const String requestDocListScreenRoute = '/requestDocListScreenRoute';
+
 
 
 
