@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:mygovern/Core/Constant/string.dart';
 import 'package:mygovern/Core/Theme/app_theme.dart';
 import 'package:mygovern/Logic/Widgets/document_card.dart';
@@ -24,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final categoryList = Provider.of<List<CategoryData>?>(context);
     for (var i = 0; i < categoryList!.length; i++) {
       print(categoryList[i].id);
+      print(categoryList[i].categoryname);
     }
 
     List documentsname = [
@@ -128,16 +133,16 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 170,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: categorys.length,
+                itemCount: categoryList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, categorydetailsScreenRoute,
-                          arguments: categorys[index]);
+                          arguments: categoryList[index]);
                     },
-                    child: DocCard2(
-                      documentname: categorys[index],
-                      documentimage: "assets/icons/" + categoryicon[index],
+                    child: DocCardforurl(
+                      documentname: categoryList[index].categoryname,
+                      documentimage: categoryList[index].url,
                     ),
                   );
                 },

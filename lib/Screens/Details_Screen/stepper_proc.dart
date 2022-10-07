@@ -44,7 +44,7 @@ class _StepperProssState extends State<StepperPross> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
-        title: Text("Document Steps"),
+        title: const Text("ડોક્યુમેન્ટ સ્ટેપ્સ"),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {
@@ -74,19 +74,16 @@ class _StepperProssState extends State<StepperPross> {
       drawer: const Drawerbtn(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          child: ListView.builder(
-            itemCount: documentdetails.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Steppercard(
-                processname: documentdetails[index],
-                index: index + 1,
-                size: documentdetails.length,
-                color:
-                    Color(int.parse(colors[Random().nextInt(colors.length)])),
-              );
-            },
-          ),
+        child: ListView.builder(
+          itemCount: documentdetails.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Steppercard(
+              processname: documentdetails[index],
+              index: index + 1,
+              size: documentdetails.length,
+              color: Color(int.parse(colors[Random().nextInt(colors.length)])),
+            );
+          },
         ),
       ),
     );

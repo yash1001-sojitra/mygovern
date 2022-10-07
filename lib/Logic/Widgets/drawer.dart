@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mygovern/Core/Theme/app_theme.dart';
 import 'package:mygovern/Screens/drawerscreens/aboutus.dart';
 import 'package:mygovern/Screens/drawerscreens/setting.dart';
 
@@ -12,7 +11,6 @@ class Drawerbtn extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 1.25,
       child: Drawer(
-        // backgroundColor: const Color(0xFFCDCDCD),
         backgroundColor: Colors.white,
         child: Column(
           children: <Widget>[
