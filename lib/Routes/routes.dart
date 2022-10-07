@@ -16,10 +16,10 @@ import '../Screens/Splash_Screen/Splash/splashscreen.dart';
 class Routes {
   late int initScreen;
   Future<void> checkForOnBordScreen() async {
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     initScreen = prefs.getInt("initScreen")!;
   }
-
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments as dynamic;
     switch (settings.name) {
@@ -31,6 +31,7 @@ class Routes {
       case onboardingScreenRoute:
         return MaterialPageRoute(
             builder: (context) => const OnboardingScreen());
+
 
       // main screens
       case homepageScreenRoute:
