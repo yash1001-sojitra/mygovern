@@ -23,12 +23,20 @@ class DocCard1 extends StatelessWidget {
             child: Row(
               children: [
                 const SizedBox(
-                  width: 10,
+                  width: 15,
                 ),
-                Image.asset(
+                Image.network(
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
                   documentimage,
-                  height: 45,
-                  width: 60,
+                  height: 40,
+                  width: 40,
+                  fit: BoxFit.fitWidth,
                 ),
                 const SizedBox(
                   width: 10,

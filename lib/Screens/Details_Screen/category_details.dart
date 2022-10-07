@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mygovern/Logic/Widgets/document_card3.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
@@ -117,7 +118,19 @@ class _CategoryDetailsState extends State<CategoryDetails> {
               .get(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return Center(
+                child: Container(
+                  color: Colors.transparent,
+                  child: Center(
+                    child: SizedBox(
+                      height: 60,
+                      width: 60,
+                      child: //CircularProgressIndicator(),
+                          Lottie.asset('assets/json/lodingtrans.json'),
+                    ),
+                  ),
+                ),
+              );
             }
             return Padding(
               padding: const EdgeInsets.only(top: 20.0),
@@ -131,7 +144,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                     onTap: () {},
                     child: DocCard3(
                         documentname: snapshot.data!.docs[index]['document'],
-                        documentimage: "assets/icons/national.png",
+                        documentimage: snapshot.data!.docs[index]['iconUrl'],
                         color: Color(int.parse(
                             colors[Random().nextInt(colors.length)]))),
                   );

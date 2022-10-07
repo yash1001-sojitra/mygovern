@@ -28,10 +28,18 @@ class DocCard3 extends StatelessWidget {
               child: CircleAvatar(
                 backgroundColor: color.withOpacity(0.2),
                 radius: 35,
-                child: Image.asset(
+                child: Image.network(
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
                   documentimage,
                   height: 40,
                   width: 40,
+                  fit: BoxFit.fitWidth,
                 ),
               ),
             ),
