@@ -44,7 +44,7 @@ class _RecentScreenState extends State<RecentScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    return data == 0
+    return data == 1
         ? Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(

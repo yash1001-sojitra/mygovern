@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:mygovern/Logic/Services/firestore/category_firestore_services.dart';
 import 'package:mygovern/Routes/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Logic/Helper/globals.dart';
 import 'Logic/Provider/userData_provider.dart';
 import 'Logic/Services/firestore/auth_services/auth_service.dart';
 import 'Logic/Services/firestore/user_firestore_services.dart';
@@ -51,17 +53,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      // localizationsDelegates: [
-
-      // ],
-      // supportedLocales: [
-      //   Locale('gu', 'IN'),
-      // ],
-      // theme: AppTheme.lightTheme,
-
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: Routes.generateRoute,
+    return FirebasePhoneAuthProvider(
+      child: MaterialApp(
+        scaffoldMessengerKey: Globals.scaffoldMessengerKey,
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: Routes.generateRoute,
+      ),
     );
   }
 }

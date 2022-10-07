@@ -258,6 +258,25 @@ class _SignInpageState extends State<SignInpage> {
                         label: const Text("Google SignIn"),
                       ),
                     ),
+                    const SizedBox(height: 30),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 18.0, right: 18),
+                      child: OutlinedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(50)),
+                        onPressed: () async {
+                          // bool val = await userDataProvider.signInWithGoogle();
+                          // await GoogleSignIn().signIn();
+                          // if (val)
+                          Navigator.pushNamed(context, NumberauthScreenRoute);
+                        },
+                        icon: SizedBox(
+                          height: 25,
+                          child: Image.asset('assets/images/phoneicon.png'),
+                        ),
+                        label: const Text("Phone signIn"),
+                      ),
+                    ),
                   ],
                 ),
               ),
