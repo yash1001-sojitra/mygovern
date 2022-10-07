@@ -11,9 +11,6 @@ import 'package:mygovern/Screens/Request_Document/request_doc_list.dart';
 import 'package:mygovern/Screens/category_for_document/cat_for_doc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Screens/Authentication/signinpage.dart';
-import '../Screens/Authentication/signuppage.dart';
-import '../Screens/Splash_Screen/Splash/onboardingscreen.dart';
 import '../Screens/Splash_Screen/Splash/splashscreen.dart';
 
 class Routes {
@@ -35,19 +32,6 @@ class Routes {
       //   return MaterialPageRoute(
       //       builder: (context) => const OnboardingScreen());
 
-<<<<<<< HEAD
-      // case authenticationScreenRoute:
-      //   return MaterialPageRoute(builder: (context) => const SignUpScreen());
-      // case forgotpassScreenRoute:
-      //   return MaterialPageRoute(
-      //       builder: (context) => const ForgotpassScreen());
-      case singInScreenRoute:
-        return MaterialPageRoute(builder: (context) => const SignInpage());
-
-      case signUpScreenRoute:
-        return MaterialPageRoute(builder: (context) => const SignupPage());
-=======
->>>>>>> 6735db21e144bcfbf0e450c968dfcbba2efc55ae
       // main screens
       case homepageScreenRoute:
         return MaterialPageRoute(builder: (context) => const HomePage());
