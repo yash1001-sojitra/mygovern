@@ -14,12 +14,10 @@ class CategoryDataFirestoreService {
         .set(categoryData.createMap());
   }
 
-
-
   Stream<List<CategoryData>> getCategoryData() {
     return _db
         .collection('Category')
-        .orderBy("time", descending: true)
+        .orderBy("time", descending: false)
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((document) => CategoryData.fromFirestore(document.data()))

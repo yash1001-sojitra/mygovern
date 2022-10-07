@@ -20,10 +20,10 @@ Future<void> main() async {
         value: CategoryDataFirestoreService().getCategoryData(),
         initialData: null,
       ),
-      StreamProvider.value(
-        value: DocumentDataFirestoreService().getDocumentData(),
-        initialData: null,
-      ),
+      // StreamProvider.value(
+      //   value: DocumentDataFirestoreService().getDocumentData(),
+      //   initialData: null,
+      // ),
     ],
     child: const MyApp(),
   ));

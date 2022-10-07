@@ -46,7 +46,7 @@ class Routes {
       case categorydetailsScreenRoute:
         return MaterialPageRoute(
             builder: (context) => CategoryDetails(
-                  categoryname: args,
+                  data: args,
                 ));
       case catfordocScreenRoute:
         return MaterialPageRoute(

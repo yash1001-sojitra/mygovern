@@ -1,7 +1,9 @@
+import 'package:mygovern/Logic/Modules/add_documentdata_model.dart';
+
 class CategoryData {
   String id;
   String categoryname;
-  late String url;
+  String url;
   DateTime time;
 
   CategoryData({

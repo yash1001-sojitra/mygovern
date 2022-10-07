@@ -82,21 +82,19 @@ class DocCardforurl extends StatelessWidget {
               child: CircleAvatar(
                 backgroundColor: Colors.white,
                 radius: 35,
-                child: Flexible(
-                  fit: FlexFit.loose,
-                  child: Image.network(
-                    documentimage,
-                    // height: 40,
-                    // width: 40,
-                    // fit: BoxFit.fitWidth,
-                  ),
+                child: Image.network(
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    } else {
+                      return CircularProgressIndicator();
+                    }
+                  },
+                  documentimage,
+                  height: 40,
+                  width: 40,
+                  fit: BoxFit.fitWidth,
                 ),
-
-                // Image.memory(
-                //   documentimage,
-                //   height: 40,
-                //   width: 40,
-                // ),
               ),
             ),
             SizedBox(

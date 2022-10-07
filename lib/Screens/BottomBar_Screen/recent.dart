@@ -12,7 +12,7 @@ class RecentScreen extends StatefulWidget {
 }
 
 class _RecentScreenState extends State<RecentScreen> {
-  int data = 1;
+  int data = 0;
   List bookmarkicon = [
     "ayushman.png",
     "voter.png",

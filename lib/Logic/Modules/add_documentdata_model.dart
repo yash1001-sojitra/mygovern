@@ -1,42 +1,34 @@
 class AddDocData {
   String id;
-  String category;
-  String docCategory;
+  String documentname;
   List requireddoc;
   List stepofdoc;
-  late String url;
-  DateTime time;
+  String url;
 
   AddDocData({
     required this.id,
-    required this.category,
-    required this.docCategory,
+    required this.documentname,
     required this.requireddoc,
     required this.stepofdoc,
     required this.url,
-    required this.time,
   });
 
   Map<String, dynamic> createMap() {
     return {
       'Id': id,
-      'Category': category,
-      'DocName': docCategory,
+      'document': documentname,
       'RequiredDoc': requireddoc,
       'StepofDoc': stepofdoc,
       'url': url,
-      'time': time,
     };
   }
 
   AddDocData.fromFirestore(Map<String, dynamic> firestoreMap)
       : id = firestoreMap['Id'],
-        category = firestoreMap['Category'],
-        docCategory = firestoreMap['DocName'],
+        documentname = firestoreMap['document'],
         requireddoc = firestoreMap['RequiredDoc'],
         stepofdoc = firestoreMap['StepofDoc'],
-        url = firestoreMap['url'],
-        time = firestoreMap['time'].toDate();
+        url = firestoreMap['url'];
 
   toList() {}
 }

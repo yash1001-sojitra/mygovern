@@ -1,19 +1,14 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings
 
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:mygovern/Core/Constant/string.dart';
 import 'package:mygovern/Core/Theme/app_theme.dart';
 import 'package:mygovern/Logic/Widgets/document_card.dart';
 import 'package:mygovern/Logic/Widgets/document_card2.dart';
-import 'package:mygovern/Screens/Details_Screen/category_details.dart';
+import 'package:mygovern/Logic/Widgets/document_card3.dart';
 import 'package:provider/provider.dart';
 
 import '../../Logic/Modules/add_category_model.dart';
-import '../category_for_document/cat_for_doc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,11 +20,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final categoryList = Provider.of<List<CategoryData>?>(context);
-    for (var i = 0; i < categoryList!.length; i++) {
-      print(categoryList[i].id);
-      print(categoryList[i].categoryname);
-    }
+    final categoryList = Provider.of<List<CategoryData>?>(context) ?? [];
+    print(categoryList);
+    // for (var i = 0; i < categoryList.length; i++) {
+    //   print(categoryList[i].categoryname);
+    // }
 
     List documentsname = [
       "આવક પ્રમાણપત્ર",
@@ -47,21 +42,21 @@ class _HomeScreenState extends State<HomeScreen> {
       "national.png"
     ];
 
-    List categorys = [
-      "નાગરિક સેવાઓ",
-      "રેશન કાર્ડ",
-      "આવક(Revenue)/ જમીન",
-      "મેજિસ્ટ્રિયલ",
-      "અન્ય"
-    ];
+    // List categorys = [
+    //   "નાગરિક સેવાઓ",
+    //   "રેશન કાર્ડ",
+    //   "આવક(Revenue)/ જમીન",
+    //   "મેજિસ્ટ્રિયલ",
+    //   "અન્ય"
+    // ];
 
-    List categoryicon = [
-      "nagrikta.png",
-      "rationcard.png",
-      "incom.png",
-      "majistralier.png",
-      "other.png"
-    ];
+    // List categoryicon = [
+    //   "nagrikta.png",
+    //   "rationcard.png",
+    //   "incom.png",
+    //   "majistralier.png",
+    //   "other.png"
+    // ];
     return SingleChildScrollView(
       child: Container(
         // width: MediaQuery.of(context).size.width,
@@ -128,26 +123,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 170,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: categoryList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, categorydetailsScreenRoute,
-                          arguments: categoryList[index]);
-                    },
-                    child: DocCardforurl(
-                      documentname: categoryList[index].categoryname,
-                      documentimage: categoryList[index].url,
+            categoryList != null
+                ? SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 170,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: categoryList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              categorydetailsScreenRoute,
+                              arguments: [
+                                categoryList[index].categoryname,
+                                categoryList[index].id
+                              ],
+                            );
+                          },
+                          child: DocCardforurl(
+                            documentname: categoryList[index].categoryname,
+                            documentimage: categoryList[index].url,
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-            ),
+                  )
+                : CircularProgressIndicator(),
             const SizedBox(
               height: 10,
             ),
@@ -178,11 +181,17 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 170,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 5,
+                itemCount: documentsname.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return DocCard2(
-                    documentname: documentsname[index],
-                    documentimage: "assets/icons/" + documenticon[index],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, catfordocScreenRoute,
+                          arguments: documentsname[index]);
+                    },
+                    child: DocCard2(
+                      documentname: documentsname[index],
+                      documentimage: "assets/icons/" + documenticon[index],
+                    ),
                   );
                 },
               ),

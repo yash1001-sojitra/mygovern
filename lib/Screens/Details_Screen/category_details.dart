@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mygovern/Logic/Widgets/document_card3.dart';
@@ -11,8 +12,8 @@ import '../../Logic/Widgets/drawer.dart';
 import '../Home_Screen/homepage.dart';
 
 class CategoryDetails extends StatefulWidget {
-  String categoryname;
-  CategoryDetails({required this.categoryname, super.key});
+  List<String> data;
+  CategoryDetails({required this.data, super.key});
 
   @override
   State<CategoryDetails> createState() => _CategoryDetailsState();
@@ -43,16 +44,18 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   ];
   @override
   Widget build(BuildContext context) {
-    final categoryList = Provider.of<List<CategoryData>?>(context);
-    for (var i = 0; i < categoryList!.length; i++) {
-      print(categoryList[i].categoryname);
-    }
+    // final data = ModalRoute.of(context)?.settings.arguments;
+    // print(data);
+    // final categoryList = Provider.of<List<CategoryData>?>(context);
+    // for (var i = 0; i < categoryList!.length; i++) {
+    //   print(categoryList[i].categoryname);
+    // }
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
         title: Flexible(
             child: Text(
-          widget.categoryname,
+          widget.data[0],
           softWrap: true,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
@@ -106,23 +109,36 @@ class _CategoryDetailsState extends State<CategoryDetails> {
         ),
       ),
       drawer: const Drawerbtn(),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 0.8, crossAxisCount: 3),
-          itemCount: documentsname.length,
-          // padding: EdgeInsets.all(10),
-          shrinkWrap: true,
-          itemBuilder: (BuildContext context, int index) {
-            return DocCard3(
-                documentname: documentsname[index],
-                documentimage: "assets/icons/national.png",
-                color:
-                    Color(int.parse(colors[Random().nextInt(colors.length)])));
-          },
-        ),
-      ),
+      body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+          future: FirebaseFirestore.instance
+              .collection('Category')
+              .doc(widget.data[1])
+              .collection('Documents')
+              .get(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator();
+            }
+            return Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 0.8, crossAxisCount: 3),
+                itemCount: snapshot.data!.docs.length,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {},
+                    child: DocCard3(
+                        documentname: snapshot.data!.docs[index]['document'],
+                        documentimage: "assets/icons/national.png",
+                        color: Color(int.parse(
+                            colors[Random().nextInt(colors.length)]))),
+                  );
+                },
+              ),
+            );
+          }),
     );
   }
 }
