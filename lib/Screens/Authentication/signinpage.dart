@@ -123,7 +123,7 @@ class _SignInpageState extends State<SignInpage> {
                                   ? const Icon(
                                       Icons.visibility_off,
                                       size: 20,
-                                      color: Colors.white54,
+                                      color: Colors.black,
                                     )
                                   : const Icon(
                                       Icons.visibility,

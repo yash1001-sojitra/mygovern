@@ -11,6 +11,7 @@ import '../../Logic/Modules/add_category_model.dart';
 import '../../Logic/Widgets/document_card2.dart';
 import '../../Logic/Widgets/drawer.dart';
 import '../Home_Screen/homepage.dart';
+import '../category_for_document/cat_for_doc.dart';
 
 class CategoryDetails extends StatefulWidget {
   List<String> data;
@@ -54,13 +55,9 @@ class _CategoryDetailsState extends State<CategoryDetails> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
-        title: Flexible(
-            child: Text(
+        title: Text(
           widget.data[0],
-          softWrap: true,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        )),
+        ),
         automaticallyImplyLeading: false,
         leading: Builder(
           builder: (context) {
@@ -141,7 +138,20 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CatforDoc(
+                            documentname: snapshot.data!.docs[index]
+                                ['document'],
+                          ),
+                          settings: RouteSettings(
+                            arguments: snapshot.data!.docs[index]['document'],
+                          ),
+                        ),
+                      );
+                    },
                     child: DocCard3(
                         documentname: snapshot.data!.docs[index]['document'],
                         documentimage: snapshot.data!.docs[index]['iconUrl'],

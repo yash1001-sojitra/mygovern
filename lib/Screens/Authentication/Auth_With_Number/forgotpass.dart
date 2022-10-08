@@ -168,19 +168,6 @@ class _ForgotPassState extends State<ForgotPass> {
                         const SizedBox(
                           width: 25,
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Image.asset(
-                            "assets/images/facebook.png",
-                            height: 35,
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 25,
-                        ),
                         GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, NumberauthScreenRoute);
@@ -191,7 +178,7 @@ class _ForgotPassState extends State<ForgotPass> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10)),
                             child: Image.asset(
-                              "assets/images/iphone.png",
+                              "assets/images/phoneicon.png",
                               height: 35,
                             ),
                           ),
