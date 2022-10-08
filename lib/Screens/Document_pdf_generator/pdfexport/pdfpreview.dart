@@ -12,9 +12,11 @@ class PdfPreviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PDF Preview'),
+        title: Text('અરજદારનો રૂબરૂ જવાબ'),
       ),
       body: PdfPreview(
+        canDebug: false,
+        canChangeOrientation: false,
         build: (context) => makePdf(invoice),
       ),
     );

@@ -66,7 +66,17 @@ class _CatforDocState extends State<CatforDoc> {
       appBar: AppBar(
         title: Flexible(
             child: Text(
-          widget.documentname,
+          docname[0] == widget.documentname
+              ? docname[0]
+              : docname[1] == widget.documentname
+                  ? docname[1]
+                  : docname[2] == widget.documentname
+                      ? docname[2]
+                      : docname[3] == widget.documentname
+                          ? docname[3]
+                          : docname[4] == widget.documentname
+                              ? docname[4]
+                              : docname[0],
           softWrap: true,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
