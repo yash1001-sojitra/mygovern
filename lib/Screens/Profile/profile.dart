@@ -1,9 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mygovern/Logic/Widgets/decoration.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
 
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  final _nameController = TextEditingController();
+  final _dobController = TextEditingController();
+  final _passportController = TextEditingController();
+  final _aadharController = TextEditingController();
+  final _panController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +52,7 @@ class Profile extends StatelessWidget {
                         decoration:
                             CustomDecoration.containerCornerRadiusDecoration,
                         child: TextFormField(
+                          controller: _nameController,
                           decoration: CustomDecoration.textFormFieldDecoration(
                                   'Full name')
                               .copyWith(prefixIcon: const Icon(Icons.person)),
@@ -57,6 +70,7 @@ class Profile extends StatelessWidget {
                         decoration:
                             CustomDecoration.containerCornerRadiusDecoration,
                         child: TextFormField(
+                          controller: _dobController,
                           decoration: CustomDecoration.textFormFieldDecoration(
                                   'Date of Birth')
                               .copyWith(
@@ -88,6 +102,7 @@ class Profile extends StatelessWidget {
                         decoration:
                             CustomDecoration.containerCornerRadiusDecoration,
                         child: TextFormField(
+                          controller: _passportController,
                           decoration: CustomDecoration.textFormFieldDecoration(
                                   'Passport number')
                               .copyWith(
@@ -101,6 +116,7 @@ class Profile extends StatelessWidget {
                         decoration:
                             CustomDecoration.containerCornerRadiusDecoration,
                         child: TextFormField(
+                          controller: _aadharController,
                           decoration: CustomDecoration.textFormFieldDecoration(
                                   'Aadhar card number')
                               .copyWith(
@@ -114,6 +130,7 @@ class Profile extends StatelessWidget {
                         decoration:
                             CustomDecoration.containerCornerRadiusDecoration,
                         child: TextFormField(
+                          controller: _panController,
                           decoration: CustomDecoration.textFormFieldDecoration(
                                   'Pan card number')
                               .copyWith(
@@ -126,17 +143,34 @@ class Profile extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(20),
-              margin: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Text(
-                'Save',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white),
+            InkWell(
+              onTap: () async {
+                await FirebaseFirestore.instance
+                    .collection('Users')
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .set({
+                  'name': _nameController.text,
+                  'dob': _dobController.text,
+                  'passport': _passportController.text,
+                  'aadhar': _aadharController.text,
+                  'pan': _panController.text,
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Data Saved Successfully!')));
+                Navigator.pop(context);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Text(
+                  'Save',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
             const SizedBox(height: 50),

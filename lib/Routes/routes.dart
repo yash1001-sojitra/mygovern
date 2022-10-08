@@ -7,6 +7,7 @@ import 'package:mygovern/Screens/Details_Screen/detailspage.dart';
 import 'package:mygovern/Screens/Details_Screen/stepper_proc.dart';
 import 'package:mygovern/Screens/Details_Screen/view_all_doc.dart';
 import 'package:mygovern/Screens/Home_Screen/homepage.dart';
+import 'package:mygovern/Screens/Request_Document/request_doc_form.dart';
 import 'package:mygovern/Screens/Request_Document/request_doc_list.dart';
 import 'package:mygovern/Screens/category_for_document/cat_for_doc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -72,6 +73,8 @@ class Routes {
       case requestDocListScreenRoute:
         return MaterialPageRoute(
             builder: (context) => const RequestDocumentList());
+      case requestDocFormScreenRoute:
+        return MaterialPageRoute(builder: (context) => const RequestDocForm());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

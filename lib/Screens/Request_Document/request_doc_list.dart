@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mygovern/Core/Constant/string.dart';
 import 'package:mygovern/Logic/Widgets/bookmark_card.dart';
 
 class RequestDocumentList extends StatelessWidget {
@@ -6,14 +7,12 @@ class RequestDocumentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> docs = ['Aadharcard', 'Pancard', 'Rationcard'];
+    List<String> docs = ['Pancard', 'Rationcard'];
     List docIcon = [
-      "aadhaar.png",
       "pancard.png",
       "rationcard.png",
     ];
     List subtitle = [
-      "અનન્ય ઓળખ સત્તા",
       "આવક ટેક્સ વિભાગ",
       "કાનૂની ઓળખ પુરાવો",
     ];
@@ -25,10 +24,15 @@ class RequestDocumentList extends StatelessWidget {
       body: ListView.builder(
         itemCount: docs.length,
         itemBuilder: (ctx, index) {
-          return BookmarkCard(
-              documentname: docs[index],
-              documentsubtitle: subtitle[index],
-              documentimage: "assets/icons/" + docIcon[index]);
+          return InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, requestDocFormScreenRoute);
+            },
+            child: BookmarkCard(
+                documentname: docs[index],
+                documentsubtitle: subtitle[index],
+                documentimage: "assets/icons/" + docIcon[index]),
+          );
         },
       ),
     );

@@ -27,7 +27,7 @@ class _CatforDocState extends State<CatforDoc> {
       "ડોક્યુમેન્ટ પ્રોસેસ",
       "ડોક્યુમેન્ટ સ્ટેપ્સ",
       "ડાઉનલોડ ડોક્યુમેન્ટ",
-      "ડોક્યુમેન્ટ રીક્વેસ્ટ",
+      "ટુટોરીયલ",
     ];
 
     List documenturl = [
@@ -92,7 +92,7 @@ class _CatforDocState extends State<CatforDoc> {
                 final file = await loadPdfFromNetwork(url);
                 openPdf(context, file, url);
               } else {
-                Navigator.pushNamed(context, requestDocListScreenRoute);
+                //Navigator.pushNamed(context, requestDocListScreenRoute);
               }
             },
             child: Cardfordetails(
