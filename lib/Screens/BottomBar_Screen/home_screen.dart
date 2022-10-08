@@ -44,6 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
       "national.png"
     ];
 
+   
+
     return SingleChildScrollView(
       child: Container(
         // width: MediaQuery.of(context).size.width,
@@ -107,8 +109,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         return GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, catfordocScreenRoute,
-                                arguments: snapshot.data!.docs[index]
-                                    ['document']);
+                                arguments: 
+                                  snapshot.data!.docs[index]['document'],
+                            )
+                                ;
                           },
                           child: DocCard1(
                             documentname: snapshot.data!.docs[index]
@@ -135,6 +139,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             categoryList != null
                 ? SizedBox(
@@ -190,25 +197,53 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: 170,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: documentsname.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, catfordocScreenRoute,
-                          arguments: documentsname[index]);
-                    },
-                    child: DocCard2(
-                      documentname: documentsname[index],
-                      documentimage: "assets/icons/" + documenticon[index],
+              height: 10,
+            ),
+            FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                future: FirebaseFirestore.instance
+                    .collection('Category')
+                    .doc("a74d19ca-2c2f-40ac-b082-9b2c7b6769b4")
+                    .collection('Documents')
+                    .get(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: Container(
+                        color: Colors.transparent,
+                        child: Center(
+                          child: SizedBox(
+                            height: 60,
+                            width: 60,
+                            child: //CircularProgressIndicator(),
+                                Lottie.asset('assets/json/lodingtrans.json'),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                  return SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 170,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, catfordocScreenRoute,
+                                arguments: documentsname[index]);
+                          },
+                          child: DocCardforurl(
+                            documentname: snapshot.data!.docs[index]
+                                ['document'],
+                            documentimage: snapshot.data!.docs[index]
+                                ['iconUrl'],
+                          ),
+                        );
+                      },
                     ),
                   );
-                },
-              ),
-            ),
+                })
           ],
         ),
       ),

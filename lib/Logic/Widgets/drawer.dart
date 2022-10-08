@@ -1,6 +1,8 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:mygovern/Logic/Helper/helper.dart';
 import 'package:mygovern/Screens/Authentication/signinpage.dart';
 import 'package:mygovern/Screens/Profile/profile.dart';
 import 'package:mygovern/Screens/Request_Document/request_doc_list.dart';
@@ -137,6 +139,8 @@ class _DrawerbtnState extends State<Drawerbtn> {
             GestureDetector(
               onTap: () async {
                 await _signOut();
+                ScaffoldMessenger.of(context).showSnackBar(animationsnackbar(
+                    "Logout", "Logout Successfully ", ContentType.help));
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(

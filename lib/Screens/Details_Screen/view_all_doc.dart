@@ -1,9 +1,10 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mygovern/Logic/Widgets/document_card2.dart';
+import 'package:lottie/lottie.dart';
+import 'package:mygovern/Core/Constant/string.dart';
 import 'dart:math' as math;
 import '../../Logic/Widgets/document_card3.dart';
 import '../../Logic/Widgets/drawer.dart';
@@ -19,32 +20,6 @@ class ViewAllDoc extends StatefulWidget {
 class _ViewAllDocState extends State<ViewAllDoc> {
   @override
   Widget build(BuildContext context) {
-    List documentsname = [
-      "આવક પ્રમાણપત્ર",
-      "નોન ક્રીમી લેયર પ્રમાણપત્ર",
-      "ડોમિસાઇલ સર્ટિફિકેટ",
-      "વિધવા સહાય પ્રમાણપત્ર",
-      "વારસાઈ પ્રમાણપત્ર",
-      "અનુસુચિત જાતિ/અનુસુચિત જનજાતિ માટેનું પ્રમાણપત્ર",
-      "ધાર્મિક અને ભાષાકીય લઘુમતી પ્રમાણપત્ર",
-      "સામાજીક અને શૈક્ષણિક રીતે પછાત વર્ગનું પ્રમાણપત્ર",
-      "આર્થિક રીતે નબળા વર્ગના (EWS) અનામતનું  પ્રમાણપત્ર",
-      "બીનઅનામત વર્ગનું જાતિનું પ્રમાણપત્ર",
-      "સોગંદનામું (એફીડેવીટ)",
-      "વિધવા હોવા અંગેનું તથા આવકનું પ્રમાણપત્ર",
-      "સોલવન્સી સર્ટીફીકેટ",
-      "રક્ષણ માટેના પરવાનો રીન્યુ કરવા બાબત",
-    ];
-    List doc2 = [
-      "નવું રેશન કાર્ડ મેળવવા",
-      "અલગ રેશન કાર્ડ મેળવવા ",
-      "ડુપ્લીકેટ રેશન કાર્ડ મેળવવા",
-      "રેશન કાર્ડમાં નામ દાખલ",
-      "રેશન કાર્ડમાંથી નામ કમી કરવા",
-      "રેશન કાર્ડમાં સરનામું ફેરફાર કરવા",
-      "સ્થળાંતર કરવાને કારણે રેશનકાર્ડમાં કમી કર્યાની નોંધ કરવા",
-      "નવી પંડીત દીનદયાલ ગ્રાહક ભંડાર (વ્યાજબી ભાવની સરકાર માન્ય દુકાન) મંજુર કરવા"
-    ];
     List colors = [
       "0xffCD5C5C",
       "0xffDFFF00",
@@ -109,74 +84,105 @@ class _ViewAllDocState extends State<ViewAllDoc> {
         ),
       ),
       drawer: const Drawerbtn(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 15, right: 15, top: 20, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Text(
-                    "નાગરિક સેવાઓ",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+      body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+          future: FirebaseFirestore.instance
+              .collection('Category')
+              .orderBy('time')
+              .get(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: Container(
+                  color: Colors.transparent,
+                  child: Center(
+                    child: SizedBox(
+                      height: 60,
+                      width: 60,
+                      child: //CircularProgressIndicator(),
+                          Lottie.asset('assets/json/lodingtrans.json'),
+                    ),
                   ),
-                ],
-              ),
-            ),
-            Divider(),
-            GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 0.8, crossAxisCount: 3),
-              itemCount: documentsname.length,
-              physics: NeverScrollableScrollPhysics(),
-              // padding: EdgeInsets.all(10),
+                ),
+              );
+            }
+            return ListView.builder(
+              itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
-                return DocCard3(
-                  documentname: documentsname[index],
-                  documentimage: "assets/icons/national.png",
-                  color:
-                      Color(int.parse(colors[Random().nextInt(colors.length)])),
+                return Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 15, right: 15, top: 20, bottom: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            snapshot.data!.docs[index]['Category'],
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Divider(),
+                    FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                        future: FirebaseFirestore.instance
+                            .collection('Category')
+                            .doc(snapshot.data!.docs[index].id)
+                            .collection('Documents')
+                            .get(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return Center(
+                              child: Container(
+                                color: Colors.transparent,
+                                child: Center(
+                                  child: SizedBox(
+                                    height: 60,
+                                    width: 60,
+                                    child: //CircularProgressIndicator(),
+                                        Lottie.asset(
+                                            'assets/json/lodingtrans.json'),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          return GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    childAspectRatio: 0.8, crossAxisCount: 3),
+                            itemCount: snapshot.data!.docs.length,
+                            physics: NeverScrollableScrollPhysics(),
+                            // padding: EdgeInsets.all(10),
+                            shrinkWrap: true,
+                            itemBuilder: (BuildContext context, int index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, catfordocScreenRoute,
+                                      arguments: snapshot.data!.docs[index]
+                                          ['document']);
+                                },
+                                child: DocCard3(
+                                  documentname: snapshot.data!.docs[index]
+                                      ['document'],
+                                  documentimage: snapshot.data!.docs[index]
+                                      ['iconUrl'],
+                                  color: Color(int.parse(
+                                      colors[Random().nextInt(colors.length)])),
+                                ),
+                              );
+                            },
+                          );
+                        })
+                  ],
                 );
               },
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "રેશન કાર્ડ",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            Divider(),
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.8, crossAxisCount: 3),
-                itemCount: doc2.length,
-                // padding: EdgeInsets.all(10),
-                shrinkWrap: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return DocCard3(
-                    documentname: doc2[index],
-                    documentimage: "assets/icons/national.png",
-                    color: Color(
-                        int.parse(colors[Random().nextInt(colors.length)])),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
+            );
+          }),
     );
   }
 }

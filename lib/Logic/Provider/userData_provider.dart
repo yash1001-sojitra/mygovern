@@ -7,7 +7,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../Modules/userData_model.dart';
 import '../Services/firestore/user_firestore_services.dart';
 
-
 class UsereDataProvider with ChangeNotifier {
   final service = UserDataFirestoreService();
   late String _id;
@@ -57,30 +56,35 @@ class UsereDataProvider with ChangeNotifier {
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
       );
-      try {
-        final UserCredential userCredential =
-            await auth.signInWithCredential(credential);
-        user = userCredential.user;
-        String userid = user!.uid.toString();
-        String email = user.email.toString();
-        String name = user.displayName.toString();
-        String userdbid = UsereDataProvider().getId;
-        if (userdbid == userid) {
-        } else {
-          changeId(userid);
-          changeEmail(email);
-          changeName(name);
+      // try {
+      //   final UserCredential userCredential =
+      //       await auth.signInWithCredential(credential);
+      //   user = userCredential.user;
+      //   String userid = user!.uid.toString();
+      //   String email = user.email.toString();
+      //   String name = user.displayName.toString();
+      //   String userdbid = UsereDataProvider().getId;
+      //   if (userdbid == userid) {
+      //   } else {
+      //     changeId(userid);
+      //     changeEmail(email);
+      //     changeName(name);
 
-          saveUserData();
-          notifyListeners();
-        }
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'account-exists-with-different-credential') {
-        } else if (e.code == 'invalid-credential') {}
-      } catch (e) {
-        print('.................');
-        print(e.toString());
-      }
+      //     saveUserData();
+      //     notifyListeners();
+      //   }
+      // } on FirebaseAuthException catch (e) {
+      //   if (e.code == 'account-exists-with-different-credential') {
+      //   } else if (e.code == 'invalid-credential') {
+      //     return null;
+      //   }
+      // } catch (e) {
+      //   return null;
+      // }
+      return Future.value(true);
+
+    } else {
+      return Future.value(false);
     }
   }
 }

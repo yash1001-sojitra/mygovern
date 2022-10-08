@@ -179,7 +179,7 @@ class _SignInpageState extends State<SignInpage> {
 
                           showAlert == true
                               ? null
-                              : progressIndicater(context, showLoading = true);
+                              : progressIndicater(context, showLoading = false);
                           emailController.clear();
                           passwordController.clear();
                           // Navigator.pushNamed(context, homepageScreenRoute);
@@ -246,15 +246,35 @@ class _SignInpageState extends State<SignInpage> {
                         style: ElevatedButton.styleFrom(
                             minimumSize: const Size.fromHeight(50)),
                         onPressed: () async {
-                          await userDataProvider.signInWithGoogle();
+                          bool val = await userDataProvider.signInWithGoogle();
                           // await GoogleSignIn().signIn();
-                          Navigator.pushNamed(context, homepageScreenRoute);
+                          if (val)
+                            Navigator.pushNamed(context, homepageScreenRoute);
                         },
                         icon: SizedBox(
                           height: 25,
                           child: Image.asset('assets/images/google.png'),
                         ),
                         label: const Text("Google SignIn"),
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 18.0, right: 18),
+                      child: OutlinedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(50)),
+                        onPressed: () async {
+                          // bool val = await userDataProvider.signInWithGoogle();
+                          // await GoogleSignIn().signIn();
+                          // if (val)
+                          Navigator.pushNamed(context, NumberauthScreenRoute);
+                        },
+                        icon: SizedBox(
+                          height: 25,
+                          child: Image.asset('assets/images/phoneicon.png'),
+                        ),
+                        label: const Text("Phone signIn"),
                       ),
                     ),
                   ],
@@ -271,6 +291,7 @@ class _SignInpageState extends State<SignInpage> {
     if (showLoading == true) {
       return showDialog(
           context: context,
+          barrierDismissible: false,
           builder: (BuildContext context) {
             return const Center(
               child: CircularProgressIndicator(),

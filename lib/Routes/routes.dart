@@ -12,8 +12,12 @@ import 'package:mygovern/Screens/Request_Document/request_doc_list.dart';
 import 'package:mygovern/Screens/category_for_document/cat_for_doc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Screens/Authentication/Auth_With_Number/auth_number.dart';
+import '../Screens/Authentication/Auth_With_Number/forgotpass.dart';
+import '../Screens/Authentication/Auth_With_Number/otp_verification.dart';
 import '../Screens/Authentication/signinpage.dart';
 import '../Screens/Authentication/signuppage.dart';
+import '../Screens/Document_pdf_generator/invoices.dart';
 import '../Screens/Splash_Screen/Splash/splashscreen.dart';
 
 class Routes {
@@ -66,15 +70,33 @@ class Routes {
             builder: (context) => CatforDoc(
                   documentname: args,
                 ));
+      case NumberauthScreenRoute:
+        return MaterialPageRoute(builder: (context) => const NumberAuth());
 
+      case ForgotpassScreenRoute:
+        return MaterialPageRoute(builder: (context) => const ForgotPass());
       case stepperprocessScreenRoute:
         return MaterialPageRoute(builder: (context) => const StepperPross());
-
+      case otpverificationScreenRoute:
+        return MaterialPageRoute(builder: (context) {
+          return VerifyPhoneNumberScreen(
+            // Name: args,
+            // Email: args,
+            // phoneNumber: args,
+            phoneNumber: args,
+          );
+        });
       case requestDocListScreenRoute:
         return MaterialPageRoute(
             builder: (context) => const RequestDocumentList());
+<<<<<<< HEAD
       case requestDocFormScreenRoute:
         return MaterialPageRoute(builder: (context) => const RequestDocForm());
+=======
+
+      case invoiceScreenRoute:
+        return MaterialPageRoute(builder: (context) => InvoicePage());
+>>>>>>> e295c8effa39ef2a6bdc81b07e7630b65c951e57
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

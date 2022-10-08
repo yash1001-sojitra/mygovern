@@ -53,6 +53,17 @@ class _SettingState extends State<Setting> {
                     onChanged: (value) {},
                   ),
                 ),
+                SettingsItem(
+                  onTap: () {},
+                  icons: Icons.feedback,
+                  iconStyle: IconStyle(
+                    iconsColor: Colors.white,
+                    withBackground: true,
+                    backgroundColor: Colors.green,
+                  ),
+                  title: 'FeedBack',
+                  subtitle: "FeedBack",
+                ),
               ],
             ),
 
