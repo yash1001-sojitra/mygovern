@@ -139,9 +139,7 @@ class _DrawerbtnState extends State<Drawerbtn> {
               onTap: () async {
                 await _signOut();
                 ScaffoldMessenger.of(context).showSnackBar(animationsnackbar(
-                    "Logout Successfully",
-                    "Logout Successfully failed",
-                    ContentType.help));
+                    "Logout", "Logout Successfully ", ContentType.help));
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
