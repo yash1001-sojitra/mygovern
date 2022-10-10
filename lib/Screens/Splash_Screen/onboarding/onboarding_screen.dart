@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mygovern/Core/Constant/string.dart';
+import 'package:mygovern/Screens/Authentication/signinpage.dart';
 import 'package:mygovern/Screens/Splash_Screen/onboarding/onboarding_contents.dart';
 import 'package:mygovern/Screens/Splash_Screen/onboarding/size_config.dart';
 
@@ -106,11 +108,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ? Padding(
                           padding: const EdgeInsets.all(30),
                           child: ElevatedButton(
-                            onPressed: () {},
-                            child: const Text("START"),
+                            onPressed: () {
+                              // Navigator.pushNamed(context, singInScreenRoute);
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignInpage()));
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.black,
-                              shape: new RoundedRectangleBorder(
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50),
                               ),
                               padding: (width <= 550)
@@ -121,6 +128,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               textStyle:
                                   TextStyle(fontSize: (width <= 550) ? 13 : 17),
                             ),
+                            child: const Text("START"),
                           ),
                         )
                       : Padding(
@@ -132,16 +140,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 onPressed: () {
                                   _controller.jumpToPage(2);
                                 },
-                                child: const Text(
-                                  "SKIP",
-                                  style: TextStyle(color: Colors.black),
-                                ),
                                 style: TextButton.styleFrom(
                                   elevation: 0,
                                   textStyle: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: (width <= 550) ? 13 : 17,
                                   ),
+                                ),
+                                child: const Text(
+                                  "SKIP",
+                                  style: TextStyle(color: Colors.black),
                                 ),
                               ),
                               ElevatedButton(
@@ -151,10 +159,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     curve: Curves.easeIn,
                                   );
                                 },
-                                child: const Text("NEXT"),
                                 style: ElevatedButton.styleFrom(
-                                  primary: Colors.black,
-                                  shape: new RoundedRectangleBorder(
+                                  backgroundColor: Colors.black,
+                                  shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50),
                                   ),
                                   elevation: 0,
@@ -166,6 +173,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   textStyle: TextStyle(
                                       fontSize: (width <= 550) ? 13 : 17),
                                 ),
+                                child: const Text("NEXT"),
                               ),
                             ],
                           ),
