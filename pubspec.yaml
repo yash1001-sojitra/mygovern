@@ -132,6 +132,10 @@ flutter:
     - family: terafont
       fonts:
         - asset: assets/fonts/TERAFONT.ttf
+    - family: Mulish
+      fonts:
+        - asset: assets/fonts/Mulish-Light.ttf
+        - asset: assets/fonts/Mulish-SemiBold.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
