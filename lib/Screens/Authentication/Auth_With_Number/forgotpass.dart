@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mygovern/Core/Constant/string.dart';
 
 import '../../../Logic/Provider/userData_provider.dart';
+import '../../../Logic/Widgets/waveback.dart';
 import '../../Splash_Screen/Splash/splashscreen.dart';
 
 class ForgotPass extends StatefulWidget {
@@ -25,7 +26,7 @@ class _ForgotPassState extends State<ForgotPass> {
       key: _formkey,
       child: Stack(
         children: [
-          const BackgroundImage(),
+          Background(),
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -45,7 +46,7 @@ class _ForgotPassState extends State<ForgotPass> {
                           textStyle: const TextStyle(
                               fontSize: 50,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                              color: Colors.black),
                         ),
                       ),
                     ),
@@ -58,7 +59,7 @@ class _ForgotPassState extends State<ForgotPass> {
                           textStyle: const TextStyle(
                               fontSize: 50,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                              color: Colors.black),
                         ),
                       ),
                     ),
@@ -73,23 +74,23 @@ class _ForgotPassState extends State<ForgotPass> {
                           obscureText: false,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.emailAddress,
-                          cursorColor: Colors.white,
+                          cursorColor: Colors.black,
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 20),
+                              color: Colors.black, fontSize: 20),
                           decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
+                              borderSide: BorderSide(color: Colors.black),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
+                              borderSide: BorderSide(color: Colors.black),
                             ),
                             prefixIcon: Icon(
                               Icons.email,
-                              color: Colors.white54,
+                              color: Colors.black45,
                             ),
                             labelText: 'Email',
                             labelStyle: TextStyle(
-                              color: Colors.white60,
+                              color: Colors.black45,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.normal,
                             ),
@@ -126,8 +127,11 @@ class _ForgotPassState extends State<ForgotPass> {
                       children: const [
                         Expanded(
                           child: Divider(
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
+                        ),
+                        SizedBox(
+                          width: 10,
                         ),
                         Text(
                           " Or Connect Using ",
@@ -137,9 +141,12 @@ class _ForgotPassState extends State<ForgotPass> {
                             fontSize: 16,
                           ),
                         ),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Expanded(
                           child: Divider(
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                       ],

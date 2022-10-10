@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../Logic/Provider/userData_provider.dart';
 import '../../../Logic/Services/firestore/auth_services/auth_service.dart';
+import '../../../Logic/Widgets/waveback.dart';
 import '../../../Logic/helper/helper.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -43,9 +44,7 @@ class _NumberAuthState extends State<NumberAuth> {
       key: _formkey,
       child: Stack(
         children: [
-          Container(
-            color: Colors.white,
-          ),
+          Background(),
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -86,7 +85,7 @@ class _NumberAuthState extends State<NumberAuth> {
                     const SizedBox(height: 30),
                     SizedBox(
                         height: 70,
-                        width: 325,
+                        width: MediaQuery.of(context).size.width * 0.90,
                         child: TextField(
                           onChanged: (((value) => setState(() {
                                 // Name = value;
@@ -120,7 +119,7 @@ class _NumberAuthState extends State<NumberAuth> {
                     const SizedBox(height: 30),
                     SizedBox(
                         height: 70,
-                        width: 325,
+                        width: MediaQuery.of(context).size.width * 0.90,
                         child: TextFormField(
                           onChanged: ((value) {
                             setState(() {
@@ -183,11 +182,11 @@ class _NumberAuthState extends State<NumberAuth> {
                       height: 30,
                     ),
                     Container(
-                      width: 325,
+                      width: MediaQuery.of(context).size.width * 0.90,
                       height: 55,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.black),
+                          border: Border.all(color: Colors.white),
                           color: Colors.black45),
                       child: TextButton(
                         onPressed: () async {
@@ -225,6 +224,9 @@ class _NumberAuthState extends State<NumberAuth> {
                             color: Colors.black,
                           ),
                         ),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Text(
                           " Or Connect Using ",
                           style: TextStyle(
@@ -232,6 +234,9 @@ class _NumberAuthState extends State<NumberAuth> {
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
+                        ),
+                        SizedBox(
+                          width: 10,
                         ),
                         Expanded(
                           child: Divider(
@@ -241,22 +246,22 @@ class _NumberAuthState extends State<NumberAuth> {
                       ],
                     ),
                     const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 18.0, right: 18),
-                      child: OutlinedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50)),
-                        onPressed: () async {
-                          bool val = await userDataProvider.signInWithGoogle();
-                          // await GoogleSignIn().signIn();
-                          if (val)
-                            Navigator.pushNamed(context, homepageScreenRoute);
-                        },
-                        icon: SizedBox(
-                          height: 25,
-                          child: Image.asset('assets/images/google.png'),
+                    GestureDetector(
+                      onTap: () async {
+                        bool val = await userDataProvider.signInWithGoogle();
+
+                        if (val)
+                          Navigator.pushNamed(context, homepageScreenRoute);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Image.asset(
+                          "assets/images/google.png",
+                          height: 35,
                         ),
-                        label: const Text("Google SignIn"),
                       ),
                     ),
                   ],
