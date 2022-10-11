@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:mygovern/Screens/Authentication/signinpage.dart';
 import 'package:mygovern/Screens/BottomBar_Screen/home_screen.dart';
 import 'package:mygovern/Screens/Home_Screen/homepage.dart';
+import 'package:mygovern/Screens/Splash_Screen/onboarding/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -31,10 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => loginNum == 1
-                        // && !isNewUser
-                        // ? const PasscodePage()
                         ? const HomePage()
-                        : const SignInpage()),
+                        : const OnboardingScreen()),
               )
             });
   }

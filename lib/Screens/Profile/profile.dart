@@ -84,6 +84,7 @@ class _ProfileState extends State<Profile> {
                                   prefixIcon: const Icon(Icons.calendar_month)),
                         ),
                       ),
+                      // TODO : Image picker for passport size photo
                     ],
                   ),
                 ),

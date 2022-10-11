@@ -69,14 +69,6 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
 
   @override
   Widget build(BuildContext context) {
-    // final _formkey = GlobalKey<FormState>();
-    // TextEditingController phoneController = TextEditingController();
-    // TextEditingController emailController = TextEditingController();
-    // TextEditingController nameController = TextEditingController();
-    // TextEditingController otpCodeController = TextEditingController();
-    // final sp = context.read<SignInProvider>();
-    // final ip = context.read<InternetProvider>();
-
     return SafeArea(
       child: FirebasePhoneAuthHandler(
         phoneNumber: widget.phoneNumber,
@@ -106,8 +98,8 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
           );
 
           // Navigator.pushReplacement(context, homepageScreenRoute);
-          Navigator.popAndPushNamed(context, homepageScreenRoute);
-          // Navigator.pushReplacementNamed(context, homepageScreenRoute);
+          // Navigator.popAndPushNamed(context, homepageScreenRoute);
+          Navigator.pushReplacementNamed(context, homepageScreenRoute);
         },
         // ignore: void_checks
         onLoginFailed: (authException, stackTrace) {
@@ -222,11 +214,11 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
                             if (verified) {
                               // number verify success
                               // will call onLoginSuccess handler
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  animationsnackbar(
-                                      "OTP Verification",
-                                      "OTP verification success",
-                                      ContentType.success));
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //     animationsnackbar(
+                              //         "OTP Verification",
+                              //         "OTP verification success",
+                              //         ContentType.success));
                             } else {
                               // phone verification failed
                               // will call onLoginFailed or onError callbacks with the error

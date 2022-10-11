@@ -9,6 +9,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../Logic/Provider/userData_provider.dart';
 import '../../Logic/Services/firestore/auth_services/auth_service.dart';
+import '../../Logic/Widgets/waveback.dart';
 import '../Splash_Screen/Splash/splashscreen.dart';
 
 class SignInpage extends StatefulWidget {
@@ -33,9 +34,10 @@ class _SignInpageState extends State<SignInpage> {
       key: _formkey,
       child: Stack(
         children: [
-          Container(
-            color: Colors.white,
-          ),
+          // Container(
+          //   color: Colors.white,
+          // ),
+          Background(),
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -52,7 +54,7 @@ class _SignInpageState extends State<SignInpage> {
                       child: const Text(
                         "Sign In",
                         style: TextStyle(
-                            fontSize: 50,
+                            fontSize: 40,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
@@ -60,7 +62,7 @@ class _SignInpageState extends State<SignInpage> {
                     const SizedBox(height: 30),
                     SizedBox(
                         height: 70,
-                        width: 325,
+                        width: MediaQuery.of(context).size.width * 0.90,
                         child: TextFormField(
                           controller: emailController,
                           obscureText: false,
@@ -91,7 +93,7 @@ class _SignInpageState extends State<SignInpage> {
                     const SizedBox(height: 30),
                     SizedBox(
                         height: 70,
-                        width: 325,
+                        width: MediaQuery.of(context).size.width * 0.90,
                         child: TextFormField(
                           controller: passwordController,
                           cursorColor: Colors.black,
@@ -123,7 +125,7 @@ class _SignInpageState extends State<SignInpage> {
                                   ? const Icon(
                                       Icons.visibility_off,
                                       size: 20,
-                                      color: Colors.white54,
+                                      color: Colors.black,
                                     )
                                   : const Icon(
                                       Icons.visibility,
@@ -224,6 +226,9 @@ class _SignInpageState extends State<SignInpage> {
                             color: Colors.black,
                           ),
                         ),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Text(
                           " Or Connect Using ",
                           style: TextStyle(
@@ -231,6 +236,9 @@ class _SignInpageState extends State<SignInpage> {
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
+                        ),
+                        SizedBox(
+                          width: 10,
                         ),
                         Expanded(
                           child: Divider(
@@ -240,43 +248,49 @@ class _SignInpageState extends State<SignInpage> {
                       ],
                     ),
                     const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 18.0, right: 18),
-                      child: OutlinedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50)),
-                        onPressed: () async {
-                          bool val = await userDataProvider.signInWithGoogle();
-                          // await GoogleSignIn().signIn();
-                          if (val)
-                            Navigator.pushNamed(context, homepageScreenRoute);
-                        },
-                        icon: SizedBox(
-                          height: 25,
-                          child: Image.asset('assets/images/google.png'),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () async {
+                            bool val =
+                                await userDataProvider.signInWithGoogle();
+
+                            if (val)
+                              Navigator.pushNamed(context, homepageScreenRoute);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Image.asset(
+                              "assets/images/google.png",
+                              height: 35,
+                            ),
+                          ),
                         ),
-                        label: const Text("Google SignIn"),
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 18.0, right: 18),
-                      child: OutlinedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50)),
-                        onPressed: () async {
-                          // bool val = await userDataProvider.signInWithGoogle();
-                          // await GoogleSignIn().signIn();
-                          // if (val)
-                          Navigator.pushNamed(context, NumberauthScreenRoute);
-                        },
-                        icon: SizedBox(
-                          height: 25,
-                          child: Image.asset('assets/images/phoneicon.png'),
+                        const SizedBox(
+                          width: 25,
                         ),
-                        label: const Text("Phone signIn"),
-                      ),
-                    ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, NumberauthScreenRoute);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Image.asset(
+                              "assets/images/phoneicon.png",
+                              height: 35,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),

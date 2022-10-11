@@ -9,7 +9,9 @@ import 'package:flutter/services.dart' show rootBundle;
 import '../../model/invoice.dart';
 
 Future<Uint8List> makePdf(requireddataforpdf invoice) async {
-  final pdf = Document();
+  final pdf = Document(
+    
+  );
   final gujaratifont =
       Font.ttf(await rootBundle.load("assets/fonts/gujartifont.ttf"));
   final terafont = Font.ttf(await rootBundle.load("assets/fonts/TERAFONT.ttf"));
@@ -24,7 +26,9 @@ Future<Uint8List> makePdf(requireddataforpdf invoice) async {
           .buffer
           .asUint8List());
   pdf.addPage(
+
     Page(
+
       theme: ThemeData.withFont(base: gujaratifont),
       build: (context) {
         return Column(

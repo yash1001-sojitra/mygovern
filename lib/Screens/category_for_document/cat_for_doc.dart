@@ -1,6 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mygovern/Core/Constant/string.dart';
+import 'package:mygovern/Logic/Modules/add_documentdata_model.dart';
+import 'package:mygovern/Logic/Modules/userData_model.dart';
+import 'package:mygovern/Logic/Provider/userData_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math' as math;
 import '../../Logic/Widgets/card_for_details.dart';
@@ -15,16 +21,24 @@ import '../../Logic/Widgets/pdf_viewer/pdf_viewer_page.dart';
 
 class CatforDoc extends StatefulWidget {
   String documentname;
-
-  CatforDoc({required this.documentname, super.key});
+  final String id;
+  CatforDoc({required this.documentname, required this.id, super.key});
 
   @override
   State<CatforDoc> createState() => _CatforDocState();
 }
 
 class _CatforDocState extends State<CatforDoc> {
+  bool isbookmark = false;
+
   @override
   Widget build(BuildContext context) {
+    // final docview = ModalRoute.of(context)!.settings.arguments as AddDocData;
+
+    final userProvider = Provider.of<UsereDataProvider>(context);
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+
     List catfordoc = [
       "ડોક્યુમેન્ટ પ્રોસેસ",
       "ડોક્યુમેન્ટ સ્ટેપ્સ",
@@ -63,15 +77,43 @@ class _CatforDocState extends State<CatforDoc> {
     return Scaffold(
       drawerEnableOpenDragGesture: true,
       appBar: AppBar(
-        title: Flexible(
-            child: Text(
+        title: Text(
           widget.documentname,
-          softWrap: true,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        )),
+        ),
         // Text(widget.documentname),
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            splashColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onPressed: () async {
+              setState(() {
+                isbookmark = !isbookmark;
+              });
+              isbookmark
+                  ? await FirebaseFirestore.instance
+                      .collection('Users')
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .collection("Bookmark")
+                      .doc(widget.id)
+                      .set({'Bookmarkid': widget.id})
+                  : await FirebaseFirestore.instance
+                      .collection('Users')
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .collection("Bookmark")
+                      .doc(widget.id)
+                      .delete();
+
+              // .set({'Bookmarkid': widget.id});
+            },
+            icon: Icon(
+              isbookmark ? Icons.bookmark : Icons.bookmark_border,
+              size: 30,
+            ),
+          )
+        ],
         leading: Builder(
           builder: (context) {
             return IconButton(
@@ -92,6 +134,7 @@ class _CatforDocState extends State<CatforDoc> {
                 ));
           },
         ),
+
         elevation: 0,
         flexibleSpace: Container(
           decoration: const BoxDecoration(color: Color(0xff1a1a1a)),

@@ -9,6 +9,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../../Logic/Modules/user_model.dart';
 import '../../Logic/Provider/userData_provider.dart';
 import '../../Logic/Services/firestore/auth_services/auth_service.dart';
+import '../../Logic/Widgets/waveback.dart';
 import '../Splash_Screen/Splash/splashscreen.dart';
 
 class SignupPage extends StatefulWidget {
@@ -41,12 +42,10 @@ class _SignupPageState extends State<SignupPage> {
 
     return Stack(
       children: [
-        Container(
-          color: Colors.white,
-        ),
+        Background(),
         Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.transparent,
             elevation: 0,
             iconTheme: IconThemeData(color: Colors.black),
           ),
@@ -72,7 +71,7 @@ class _SignupPageState extends State<SignupPage> {
                     const SizedBox(height: 30),
                     SizedBox(
                         height: 70,
-                        width: 325,
+                        width: MediaQuery.of(context).size.width * 0.90,
                         child: TextField(
                           onChanged: (((value) =>
                               userDataProvider.changeEmail(value))),
@@ -102,7 +101,7 @@ class _SignupPageState extends State<SignupPage> {
                     const SizedBox(height: 30),
                     SizedBox(
                         height: 70,
-                        width: 325,
+                        width: MediaQuery.of(context).size.width * 0.90,
                         child: TextField(
                           cursorColor: Colors.black,
                           controller: passwordController,
@@ -142,7 +141,7 @@ class _SignupPageState extends State<SignupPage> {
                         )),
                     const SizedBox(height: 25),
                     Container(
-                      width: 325,
+                      width: MediaQuery.of(context).size.width * 0.90,
                       height: 55,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -181,7 +180,7 @@ class _SignupPageState extends State<SignupPage> {
                           "Already have an Account?",
                           style: TextStyle(
                             color: Colors.black,
-                            fontWeight: FontWeight.w100,
+                            fontWeight: FontWeight.w400,
                             fontSize: 16,
                           ),
                         ),
@@ -209,6 +208,9 @@ class _SignupPageState extends State<SignupPage> {
                             color: Colors.black,
                           ),
                         ),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Text(
                           " Or Connect Using ",
                           style: TextStyle(
@@ -216,6 +218,9 @@ class _SignupPageState extends State<SignupPage> {
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
+                        ),
+                        SizedBox(
+                          width: 10,
                         ),
                         Expanded(
                           child: Divider(
@@ -225,21 +230,22 @@ class _SignupPageState extends State<SignupPage> {
                       ],
                     ),
                     const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 18.0, right: 18),
-                      child: OutlinedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50)),
-                        onPressed: () async {
-                          await userDataProvider.signInWithGoogle();
-                          // await GoogleSignIn().signIn();
+                    GestureDetector(
+                      onTap: () async {
+                        bool val = await userDataProvider.signInWithGoogle();
+
+                        if (val)
                           Navigator.pushNamed(context, homepageScreenRoute);
-                        },
-                        icon: SizedBox(
-                          height: 25,
-                          child: Image.asset('assets/images/google.png'),
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Image.asset(
+                          "assets/images/google.png",
+                          height: 35,
                         ),
-                        label: const Text("Google SignIn"),
                       ),
                     ),
                   ],

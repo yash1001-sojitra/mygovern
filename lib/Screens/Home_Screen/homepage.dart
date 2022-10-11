@@ -227,6 +227,7 @@ class CustomDelegate extends SearchDelegate<String> {
               context,
               MaterialPageRoute(
                 builder: (context) => CatforDoc(
+                  id: documentnames[i],
                   documentname: documentnames[i],
                 ),
                 settings: RouteSettings(

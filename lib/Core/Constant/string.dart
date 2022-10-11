@@ -26,6 +26,7 @@ const String ForgotpassScreenRoute = '/forgotpass';
 const String singInScreenRoute = '/singInScreenRoute';
 const String signUpScreenRoute = '/signUpScreenRoute';
 
+const String requestDocFormScreenRoute = '/requestDocFormScreenRoute';
 const String invoiceScreenRoute = '/inviceScreenRoute';
 const String NumberauthScreenRoute = 'numberauthScreenRoute';
 const String otpverificationScreenRoute = 'otpverificationScreenRoute';

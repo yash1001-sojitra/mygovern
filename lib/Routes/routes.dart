@@ -9,6 +9,8 @@ import 'package:mygovern/Screens/Details_Screen/view_all_doc.dart';
 import 'package:mygovern/Screens/Home_Screen/homepage.dart';
 import 'package:mygovern/Screens/Request_Document/request_doc_form.dart';
 import 'package:mygovern/Screens/Request_Document/request_doc_list.dart';
+import 'package:mygovern/Screens/Splash_Screen/onboarding/onboarding_screen.dart';
+import 'package:mygovern/Screens/category_for_document/argfordata.dart';
 import 'package:mygovern/Screens/category_for_document/cat_for_doc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,15 +37,10 @@ class Routes {
       case splashScreenRoute:
         return MaterialPageRoute(builder: (context) => const SplashScreen());
 
-      // case onboardingScreenRoute:
-      //   return MaterialPageRoute(
-      //       builder: (context) => const OnboardingScreen());
+      case onboardingScreenRoute:
+        return MaterialPageRoute(
+            builder: (context) => const OnboardingScreen());
 
-      // case authenticationScreenRoute:
-      //   return MaterialPageRoute(builder: (context) => const SignUpScreen());
-      // case forgotpassScreenRoute:
-      //   return MaterialPageRoute(
-      //       builder: (context) => const ForgotpassScreen());
       case singInScreenRoute:
         return MaterialPageRoute(builder: (context) => const SignInpage());
 
@@ -67,9 +64,7 @@ class Routes {
                 ));
       case catfordocScreenRoute:
         return MaterialPageRoute(
-            builder: (context) => CatforDoc(
-                  documentname: args,
-                ));
+            builder: (context) => CatforDoc(documentname: args, id: args));
       case NumberauthScreenRoute:
         return MaterialPageRoute(builder: (context) => const NumberAuth());
 

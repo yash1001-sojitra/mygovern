@@ -1,6 +1,7 @@
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -27,8 +28,6 @@ class _SettingState extends State<Setting> {
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
-            // user card
-
             SettingsGroup(
               items: [
                 SettingsItem(
@@ -91,6 +90,36 @@ class _SettingState extends State<Setting> {
                 ),
               ],
             ),
+
+            Text(
+              "Rate Us",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Container(
+              height: 80,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20), color: Colors.white),
+              child: Center(
+                child: RatingBar.builder(
+                  initialRating: 3,
+                  minRating: 1,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  onRatingUpdate: (rating) {
+                    print(rating);
+                  },
+                ),
+              ),
+            )
           ],
         ),
       ),
