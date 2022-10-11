@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:mygovern/Core/Constant/string.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math' as math;
@@ -30,13 +29,9 @@ class _CatforDocState extends State<CatforDoc> {
       "ડોક્યુમેન્ટ પ્રોસેસ",
       "ડોક્યુમેન્ટ સ્ટેપ્સ",
       "ડાઉનલોડ ડોક્યુમેન્ટ",
-<<<<<<< HEAD
-      "ટુટોરીયલ",
-=======
       "ફોર્મ ભરો",
       "ડોક્યુમેન્ટ રીક્વેસ્ટ",
       "ડોક્યુમેન્ટ ટ્યુટોરીયલ",
->>>>>>> e295c8effa39ef2a6bdc81b07e7630b65c951e57
     ];
 
     List documenturl = [
@@ -120,10 +115,6 @@ class _CatforDocState extends State<CatforDoc> {
                     "https://www.digitalgujarat.gov.in/DownLoad/pdfforms/s63.pdf";
                 final file = await loadPdfFromNetwork(url);
                 openPdf(context, file, url);
-<<<<<<< HEAD
-              } else {
-                //Navigator.pushNamed(context, requestDocListScreenRoute);
-=======
               } else if (index == 3) {
                 Navigator.pushNamed(context, invoiceScreenRoute);
               } else if (index == 4) {
@@ -140,7 +131,6 @@ class _CatforDocState extends State<CatforDoc> {
                                 : docname[4] == widget.documentname
                                     ? urls[4]
                                     : urls[0]);
->>>>>>> e295c8effa39ef2a6bdc81b07e7630b65c951e57
               }
             },
             child: Cardfordetails(

@@ -89,14 +89,11 @@ class Routes {
       case requestDocListScreenRoute:
         return MaterialPageRoute(
             builder: (context) => const RequestDocumentList());
-<<<<<<< HEAD
       case requestDocFormScreenRoute:
         return MaterialPageRoute(builder: (context) => const RequestDocForm());
-=======
 
       case invoiceScreenRoute:
         return MaterialPageRoute(builder: (context) => InvoicePage());
->>>>>>> e295c8effa39ef2a6bdc81b07e7630b65c951e57
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

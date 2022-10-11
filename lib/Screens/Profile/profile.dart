@@ -39,6 +39,13 @@ class _ProfileState extends State<Profile> {
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              child: Text(
+                '* Both details required for request a document',
+                style: TextStyle(color: Colors.black54),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(4.0),
               child: Card(
@@ -87,6 +94,13 @@ class _ProfileState extends State<Profile> {
               child: Text(
                 'Document Details',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              child: Text(
+                '* Any one documemt details required for request a document',
+                style: TextStyle(color: Colors.black54),
               ),
             ),
             Padding(
@@ -145,6 +159,18 @@ class _ProfileState extends State<Profile> {
             ),
             InkWell(
               onTap: () async {
+                final aadharData = await FirebaseFirestore.instance
+                    .collection('Aadharcard')
+                    .doc(_aadharController.text)
+                    .get();
+                final panData = await FirebaseFirestore.instance
+                    .collection('Pancard')
+                    .doc(_panController.text)
+                    .get();
+                final passportData = await FirebaseFirestore.instance
+                    .collection('Passport')
+                    .doc(_passportController.text)
+                    .get();
                 await FirebaseFirestore.instance
                     .collection('Users')
                     .doc(FirebaseAuth.instance.currentUser!.uid)
