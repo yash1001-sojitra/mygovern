@@ -257,8 +257,9 @@ class _SignInpageState extends State<SignInpage> {
                             bool val =
                                 await userDataProvider.signInWithGoogle();
 
-                            if (val)
+                            if (val) {
                               Navigator.pushNamed(context, homepageScreenRoute);
+                            }
                           },
                           child: Container(
                             padding: const EdgeInsets.all(8),
