@@ -12,6 +12,7 @@ class UsereDataProvider with ChangeNotifier {
   late String _id;
   late String _Name;
   late String _email;
+  late List _bookmark;
   final DateTime _time = DateTime.now();
 
   // getter
@@ -32,9 +33,21 @@ class UsereDataProvider with ChangeNotifier {
     _email = value;
   }
 
+  void addBookmark(userId, docId) {
+    service.addBookmark(userId, docId);
+  }
+
+  void removeBookmark(userId, docId) {
+    service.removeBookmark(userId, docId);
+  }
+
   void saveUserData() {
-    var newUserData =
-        UserData(email: getEmail, Name: getName, id: getId, time: _time);
+    var newUserData = UserData(
+        email: getEmail,
+        Name: getName,
+        id: getId,
+        time: _time,
+        bookmark: _bookmark);
     service.saveUser(newUserData);
   }
 
@@ -56,33 +69,8 @@ class UsereDataProvider with ChangeNotifier {
         accessToken: googleSignInAuthentication.accessToken,
         idToken: googleSignInAuthentication.idToken,
       );
-      // try {
-      //   final UserCredential userCredential =
-      //       await auth.signInWithCredential(credential);
-      //   user = userCredential.user;
-      //   String userid = user!.uid.toString();
-      //   String email = user.email.toString();
-      //   String name = user.displayName.toString();
-      //   String userdbid = UsereDataProvider().getId;
-      //   if (userdbid == userid) {
-      //   } else {
-      //     changeId(userid);
-      //     changeEmail(email);
-      //     changeName(name);
 
-      //     saveUserData();
-      //     notifyListeners();
-      //   }
-      // } on FirebaseAuthException catch (e) {
-      //   if (e.code == 'account-exists-with-different-credential') {
-      //   } else if (e.code == 'invalid-credential') {
-      //     return null;
-      //   }
-      // } catch (e) {
-      //   return null;
-      // }
       return Future.value(true);
-
     } else {
       return Future.value(false);
     }

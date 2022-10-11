@@ -10,6 +10,7 @@ import 'package:mygovern/Screens/Home_Screen/homepage.dart';
 import 'package:mygovern/Screens/Request_Document/request_doc_form.dart';
 import 'package:mygovern/Screens/Request_Document/request_doc_list.dart';
 import 'package:mygovern/Screens/Splash_Screen/onboarding/onboarding_screen.dart';
+import 'package:mygovern/Screens/category_for_document/argfordata.dart';
 import 'package:mygovern/Screens/category_for_document/cat_for_doc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -63,9 +64,7 @@ class Routes {
                 ));
       case catfordocScreenRoute:
         return MaterialPageRoute(
-            builder: (context) => CatforDoc(
-                  documentname: args,
-                ));
+            builder: (context) => CatforDoc(documentname: args, id: args));
       case NumberauthScreenRoute:
         return MaterialPageRoute(builder: (context) => const NumberAuth());
 

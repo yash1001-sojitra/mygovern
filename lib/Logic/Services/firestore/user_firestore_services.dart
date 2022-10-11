@@ -30,4 +30,16 @@ class UserDataFirestoreService {
   Future<void> removeUser(String userId) {
     return _db.collection('User').doc(userId).delete();
   }
+
+  Future<void> addBookmark(String userId, String docId) {
+    return _db.collection('User').doc(userId).update({
+      'Bookmark': FieldValue.arrayUnion([docId])
+    });
+  }
+
+  Future<void> removeBookmark(String userId, String docId) {
+    return _db.collection('User').doc(userId).update({
+      'Bookmark': FieldValue.arrayRemove([docId])
+    });
+  }
 }

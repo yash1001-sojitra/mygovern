@@ -4,11 +4,13 @@ class UserData {
   String id;
   String Name;
   String email;
+  List bookmark;
   DateTime time;
   UserData(
       {required this.id,
       required this.Name,
       required this.email,
+      required this.bookmark,
       required this.time});
 
   Map<String, dynamic> createMap() {
@@ -16,6 +18,7 @@ class UserData {
       'id': id,
       'Name': Name,
       'Email': email,
+      'Bookmark': bookmark,
       'time': time,
     };
   }
@@ -24,5 +27,6 @@ class UserData {
       : id = firestoreMap!['id'],
         Name = firestoreMap['Name'],
         email = firestoreMap['Email'],
+        bookmark = firestoreMap['Bookmark'],
         time = firestoreMap['time'].toDate();
 }

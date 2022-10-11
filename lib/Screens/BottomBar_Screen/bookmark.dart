@@ -47,6 +47,7 @@ class BookmarkScreen extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => CatforDoc(
+                  id: bookmarkname[index],
                   documentname: bookmarkname[index],
                 ),
                 settings: RouteSettings(

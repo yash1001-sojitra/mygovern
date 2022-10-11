@@ -61,6 +61,7 @@ class _RecentScreenState extends State<RecentScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => CatforDoc(
+                        id: bookmarkname[index],
                         documentname: bookmarkname[index],
                       ),
                       settings: RouteSettings(

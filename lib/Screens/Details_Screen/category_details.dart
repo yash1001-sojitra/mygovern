@@ -11,6 +11,7 @@ import '../../Logic/Modules/add_category_model.dart';
 import '../../Logic/Widgets/document_card2.dart';
 import '../../Logic/Widgets/drawer.dart';
 import '../Home_Screen/homepage.dart';
+import '../category_for_document/argfordata.dart';
 import '../category_for_document/cat_for_doc.dart';
 
 class CategoryDetails extends StatefulWidget {
@@ -143,11 +144,14 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => CatforDoc(
+                            id: snapshot.data!.docs[index]['document'],
                             documentname: snapshot.data!.docs[index]
                                 ['document'],
                           ),
                           settings: RouteSettings(
-                            arguments: snapshot.data!.docs[index]['document'],
+                            arguments: ScreenArguments(
+                                snapshot.data!.docs[index]['document'],
+                                snapshot.data!.docs[index]['document']),
                           ),
                         ),
                       );
