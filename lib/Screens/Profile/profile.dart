@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mygovern/Logic/Widgets/decoration.dart';
 
@@ -16,6 +20,10 @@ class _ProfileState extends State<Profile> {
   final _passportController = TextEditingController();
   final _aadharController = TextEditingController();
   final _panController = TextEditingController();
+  late File imageFile;
+  PlatformFile? pickedFile;
+  bool showLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +53,7 @@ class _ProfileState extends State<Profile> {
             _passportController.text = data.get('passport');
             _aadharController.text = data.get('aadhar');
             _panController.text = data.get('pan');
+
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -59,7 +68,15 @@ class _ProfileState extends State<Profile> {
                           height: 160,
                           decoration:
                               CustomDecoration.containerCornerRadiusDecoration,
-                          child: const Icon(Icons.person),
+                          child: pickedFile != null
+                              ? Image.file(
+                                  (File("${pickedFile!.path}")),
+                                )
+                              : snapshot.data!.get('profileimage').toString() !=
+                                      ""
+                                  ? Image.network(
+                                      snapshot.data!.get('profileimage'))
+                                  : Icon(Icons.person),
                         ),
                         const SizedBox(width: 10),
                         Column(
@@ -74,7 +91,9 @@ class _ProfileState extends State<Profile> {
                               thickness: 2,
                             ),
                             OutlinedButton.icon(
-                              onPressed: () {},
+                              onPressed: () {
+                                selectFile();
+                              },
                               label: const Text('Add'),
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
@@ -86,7 +105,28 @@ class _ProfileState extends State<Profile> {
                               icon: const Icon(Icons.add),
                             ),
                             OutlinedButton.icon(
-                              onPressed: () {},
+                              onPressed: () async {
+                                final ref = snapshot.data!.get('profileimage');
+
+                                String filePath = ref;
+
+                                await FirebaseStorage.instance
+                                    .ref()
+                                    .child(filePath)
+                                    .delete();
+
+                                await FirebaseFirestore.instance
+                                    .collection('Users')
+                                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                                    .set({
+                                  'name': _nameController.text,
+                                  'dob': _dobController.text,
+                                  'passport': _passportController.text,
+                                  'aadhar': _aadharController.text,
+                                  'pan': _panController.text,
+                                  'profileimage': ""
+                                });
+                              },
                               icon: const Icon(Icons.delete),
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all(
@@ -158,7 +198,6 @@ class _ProfileState extends State<Profile> {
                                                 Icons.calendar_month)),
                               ),
                             ),
-                            // TODO : Image picker for passport size photo
                           ],
                         ),
                       ),
@@ -238,6 +277,13 @@ class _ProfileState extends State<Profile> {
                   ),
                   InkWell(
                     onTap: () async {
+                      final ref = FirebaseStorage.instance
+                          .ref()
+                          .child('url')
+                          .child(pickedFile!.name.toString());
+                      await ref.putFile(imageFile);
+                      String url = await ref.getDownloadURL();
+
                       final aadharData = await FirebaseFirestore.instance
                           .collection('Aadharcard')
                           .doc(_aadharController.text)
@@ -259,6 +305,7 @@ class _ProfileState extends State<Profile> {
                         'passport': _passportController.text,
                         'aadhar': _aadharController.text,
                         'pan': _panController.text,
+                        'profileimage': pickedFile == null ? "" : url,
                       });
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Data Saved Successfully!')));
@@ -284,5 +331,32 @@ class _ProfileState extends State<Profile> {
             );
           }),
     );
+  }
+
+  Future selectFile() async {
+    final result = await FilePicker.platform.pickFiles();
+
+    if (result == null) return;
+    setState(() {
+      pickedFile = result.files.first;
+
+      if (pickedFile != null) {
+        imageFile = File(pickedFile!.path!);
+      }
+    });
+  }
+
+  Future<dynamic>? progressIndicater(BuildContext context, showLoading) {
+    if (showLoading == true) {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          });
+    } else {
+      return null;
+    }
   }
 }

@@ -68,6 +68,7 @@ dependencies:
   invoiceninja: ^0.0.9
   url_launcher: ^6.1.6
   flutter_rating_bar: ^4.0.1
+  file_picker:
 
 
 
