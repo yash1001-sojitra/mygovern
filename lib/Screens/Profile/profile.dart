@@ -6,6 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:mygovern/Logic/Widgets/decoration.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+
+import '../../Logic/helper/helper.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -26,6 +29,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    print("pickedfile $pickedFile");
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -48,12 +53,13 @@ class _ProfileState extends State<Profile> {
               );
             }
             final data = snapshot.data!;
+            print(
+                " profile image from firebase ${snapshot.data!.get('profileimage')}");
             _nameController.text = data.get('name');
             _dobController.text = data.get('dob');
             _passportController.text = data.get('passport');
             _aadharController.text = data.get('aadhar');
             _panController.text = data.get('pan');
-
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -63,6 +69,9 @@ class _ProfileState extends State<Profile> {
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
+                        SizedBox(
+                          width: 20,
+                        ),
                         Container(
                           width: 120,
                           height: 160,
@@ -70,12 +79,17 @@ class _ProfileState extends State<Profile> {
                               CustomDecoration.containerCornerRadiusDecoration,
                           child: pickedFile != null
                               ? Image.file(
+                                  height: 120,
+                                  width: 160,
                                   (File("${pickedFile!.path}")),
                                 )
                               : snapshot.data!.get('profileimage').toString() !=
                                       ""
                                   ? Image.network(
-                                      snapshot.data!.get('profileimage'))
+                                      snapshot.data!.get('profileimage'),
+                                      height: 120,
+                                      width: 160,
+                                    )
                                   : Icon(Icons.person),
                         ),
                         const SizedBox(width: 10),
@@ -106,26 +120,60 @@ class _ProfileState extends State<Profile> {
                             ),
                             OutlinedButton.icon(
                               onPressed: () async {
-                                final ref = snapshot.data!.get('profileimage');
+                                try {
+                                  final ref =
+                                      snapshot.data!.get('profileimage');
 
-                                String filePath = ref;
+                                  String filePath = ref;
 
-                                await FirebaseStorage.instance
-                                    .ref()
-                                    .child(filePath)
-                                    .delete();
+                                  await FirebaseStorage.instance
+                                      .refFromURL(filePath)
+                                      .delete()
+                                      .then((_) {
+                                    FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(FirebaseAuth
+                                            .instance.currentUser!.uid)
+                                        .set({
+                                      'name': _nameController.text,
+                                      'dob': _dobController.text,
+                                      'passport': _passportController.text,
+                                      'aadhar': _aadharController.text,
+                                      'pan': _panController.text,
+                                      'profileimage': ""
+                                    });
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        animationsnackbar(
+                                            "Profile remove Sucessfully",
+                                            "Profile removed",
+                                            ContentType.success));
+                                  });
+                                  // await FirebaseStorage.instance
+                                  //     .ref()
+                                  //     .child(filePath)
+                                  //     .delete();
 
-                                await FirebaseFirestore.instance
-                                    .collection('Users')
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
-                                  'name': _nameController.text,
-                                  'dob': _dobController.text,
-                                  'passport': _passportController.text,
-                                  'aadhar': _aadharController.text,
-                                  'pan': _panController.text,
-                                  'profileimage': ""
-                                });
+                                  // await FirebaseFirestore.instance
+                                  //     .collection('Users')
+                                  //     .doc(FirebaseAuth
+                                  //         .instance.currentUser!.uid)
+                                  //     .set({
+                                  //   'name': _nameController.text,
+                                  //   'dob': _dobController.text,
+                                  //   'passport': _passportController.text,
+                                  //   'aadhar': _aadharController.text,
+                                  //   'pan': _panController.text,
+                                  //   'profileimage': ""
+                                  // });
+                                } catch (e) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      animationsnackbar(
+                                          "Profile remove Failed",
+                                          "OTP verification failed",
+                                          ContentType.failure));
+                                }
                               },
                               icon: const Icon(Icons.delete),
                               style: ButtonStyle(
@@ -305,10 +353,24 @@ class _ProfileState extends State<Profile> {
                         'passport': _passportController.text,
                         'aadhar': _aadharController.text,
                         'pan': _panController.text,
-                        'profileimage': pickedFile == null ? "" : url,
+                        'profileimage':
+                            snapshot.data!.get('profileimage') == "" &&
+                                    pickedFile == null
+                                ? ""
+                                : snapshot.data!.get('profileimage') == ""
+                                    ? pickedFile == null
+                                        ? ""
+                                        : url
+                                    : pickedFile == null
+                                        ? snapshot.data!.get('profileimage')
+                                        : url,
                       });
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text('Data Saved Successfully!')));
+                      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      //     content: Text('Data Saved Successfully!')));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          animationsnackbar("Profile saved Sucessfully",
+                              "Profile saved", ContentType.success));
+                      Navigator.pop(context);
                       Navigator.pop(context);
                     },
                     child: Container(
