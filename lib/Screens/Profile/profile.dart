@@ -154,23 +154,6 @@ class _ProfileState extends State<Profile> {
                                             "Profile removed",
                                             ContentType.success));
                                   });
-                                  // await FirebaseStorage.instance
-                                  //     .ref()
-                                  //     .child(filePath)
-                                  //     .delete();
-
-                                  // await FirebaseFirestore.instance
-                                  //     .collection('Users')
-                                  //     .doc(FirebaseAuth
-                                  //         .instance.currentUser!.uid)
-                                  //     .set({
-                                  //   'name': _nameController.text,
-                                  //   'dob': _dobController.text,
-                                  //   'passport': _passportController.text,
-                                  //   'aadhar': _aadharController.text,
-                                  //   'pan': _panController.text,
-                                  //   'profileimage': ""
-                                  // });
                                 } catch (e) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       animationsnackbar(
