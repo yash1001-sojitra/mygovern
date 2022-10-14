@@ -5,6 +5,7 @@ import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mygovern/Core/Constant/string.dart';
+import 'package:mygovern/Screens/Authentication/signinpage.dart';
 import '../../../Logic/Widgets/pin_input.dart';
 import '../../../Logic/helper/helper.dart';
 import '../../Splash_Screen/Splash/splashscreen.dart';
@@ -148,9 +149,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
             backgroundColor: Colors.transparent,
             body: controller.isSendingCode
                 ? Stack(children: [
-                    Container(
-                      color: Colors.white,
-                    ),
+                    BackgroundImageforlogin(),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -168,7 +167,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen>
                     ),
                   ])
                 : Stack(children: [
-                    const BackgroundImage(),
+                    BackgroundImageforlogin(),
                     ListView(
                       padding: const EdgeInsets.all(20),
                       controller: scrollController,

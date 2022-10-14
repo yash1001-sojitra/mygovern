@@ -37,7 +37,8 @@ class _SignInpageState extends State<SignInpage> {
           // Container(
           //   color: Colors.white,
           // ),
-          Background(),
+          // Background(),
+          BackgroundImageforlogin(),
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -56,7 +57,7 @@ class _SignInpageState extends State<SignInpage> {
                         style: TextStyle(
                             fontSize: 40,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black),
+                            color: Colors.white),
                       ),
                     ),
                     const SizedBox(height: 30),
@@ -68,23 +69,23 @@ class _SignInpageState extends State<SignInpage> {
                           obscureText: false,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.emailAddress,
-                          cursorColor: Colors.black,
+                          cursorColor: Colors.white,
                           style: const TextStyle(
-                              color: Colors.black, fontSize: 20),
+                              color: Colors.white, fontSize: 20),
                           decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             prefixIcon: Icon(
                               Icons.email,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                             labelText: 'Email',
                             labelStyle: TextStyle(
-                              color: Colors.grey,
+                              color: Colors.white54,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.normal,
                             ),
@@ -96,9 +97,9 @@ class _SignInpageState extends State<SignInpage> {
                         width: MediaQuery.of(context).size.width * 0.90,
                         child: TextFormField(
                           controller: passwordController,
-                          cursorColor: Colors.black,
+                          cursorColor: Colors.white,
                           style: const TextStyle(
-                              color: Colors.black, fontSize: 20),
+                              color: Colors.white, fontSize: 20),
                           obscureText: ispasswordvisible,
                           textInputAction: TextInputAction.done,
                           validator: (value) {
@@ -111,33 +112,33 @@ class _SignInpageState extends State<SignInpage> {
                           },
                           decoration: InputDecoration(
                             enabledBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             focusedBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             prefixIcon: const Icon(
                               Icons.lock,
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                             suffixIcon: IconButton(
                               icon: ispasswordvisible
                                   ? const Icon(
                                       Icons.visibility_off,
                                       size: 20,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     )
                                   : const Icon(
                                       Icons.visibility,
                                       size: 20,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                     ),
                               onPressed: () => setState(
                                   () => ispasswordvisible = !ispasswordvisible),
                             ),
                             labelText: 'Password',
                             labelStyle: const TextStyle(
-                              color: Colors.grey,
+                              color: Colors.white60,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -155,8 +156,7 @@ class _SignInpageState extends State<SignInpage> {
                               child: const Text(
                                 "Forgot your password?",
                                 style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                   fontSize: 16,
                                 ),
                               ),
@@ -223,7 +223,7 @@ class _SignInpageState extends State<SignInpage> {
                       children: const [
                         Expanded(
                           child: Divider(
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                         SizedBox(
@@ -242,7 +242,7 @@ class _SignInpageState extends State<SignInpage> {
                         ),
                         Expanded(
                           child: Divider(
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                       ],
@@ -339,5 +339,32 @@ class _SignInpageState extends State<SignInpage> {
       title: "ALERT",
       desc: e.toString(),
     ).show();
+  }
+}
+
+class BackgroundImageforlogin extends StatelessWidget {
+  const BackgroundImageforlogin({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ShaderMask(
+      shaderCallback: (bounds) => const LinearGradient(
+        colors: [Colors.black45, Colors.black38],
+        begin: Alignment.bottomCenter,
+        end: Alignment.center,
+      ).createShader(bounds),
+      blendMode: BlendMode.darken,
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/backimage.png"),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(Colors.black54, BlendMode.darken),
+          ),
+        ),
+      ),
+    );
   }
 }

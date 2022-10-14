@@ -66,7 +66,7 @@ class _ForgotPassState extends State<ForgotPass> {
                     const SizedBox(height: 30),
                     SizedBox(
                         height: 70,
-                        width: 325,
+                        width: MediaQuery.of(context).size.width * 0.90,
                         child: TextFormField(
                           onChanged: ((value) {
                             forgotemail = value;

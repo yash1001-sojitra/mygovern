@@ -3,6 +3,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:mygovern/Core/Constant/string.dart';
+import 'package:mygovern/Screens/Authentication/signinpage.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../Logic/Provider/userData_provider.dart';
@@ -44,11 +45,12 @@ class _NumberAuthState extends State<NumberAuth> {
       key: _formkey,
       child: Stack(
         children: [
-          Background(),
+          // Background(),
+          BackgroundImageforlogin(),
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
-              iconTheme: IconThemeData(color: Colors.black),
+              iconTheme: IconThemeData(color: Colors.white),
               backgroundColor: Colors.transparent,
               elevation: 0,
             ),
@@ -65,7 +67,7 @@ class _NumberAuthState extends State<NumberAuth> {
                           textStyle: const TextStyle(
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              color: Colors.white),
                         ),
                       ),
                     ),
@@ -78,7 +80,7 @@ class _NumberAuthState extends State<NumberAuth> {
                           textStyle: const TextStyle(
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              color: Colors.white),
                         ),
                       ),
                     ),
@@ -94,23 +96,23 @@ class _NumberAuthState extends State<NumberAuth> {
                           controller: nameController,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.name,
-                          cursorColor: Colors.black,
+                          cursorColor: Colors.white,
                           style: const TextStyle(
-                              color: Colors.black, fontSize: 17),
+                              color: Colors.white, fontSize: 17),
                           decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             prefixIcon: Icon(
                               Icons.person,
-                              color: Colors.black45,
+                              color: Colors.white,
                             ),
                             labelText: 'Name',
                             labelStyle: TextStyle(
-                              color: Colors.black45,
+                              color: Colors.white60,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.normal,
                             ),
@@ -130,23 +132,23 @@ class _NumberAuthState extends State<NumberAuth> {
                           obscureText: false,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.emailAddress,
-                          cursorColor: Colors.black,
+                          cursorColor: Colors.white,
                           style: const TextStyle(
-                              color: Colors.black, fontSize: 20),
+                              color: Colors.white, fontSize: 20),
                           decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             prefixIcon: Icon(
                               Icons.email,
-                              color: Colors.black45,
+                              color: Colors.white,
                             ),
                             labelText: 'Email',
                             labelStyle: TextStyle(
-                              color: Colors.black45,
+                              color: Colors.white60,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.normal,
                             ),
@@ -154,12 +156,12 @@ class _NumberAuthState extends State<NumberAuth> {
                         )),
                     const SizedBox(height: 30),
                     Padding(
-                      padding: const EdgeInsets.only(left: 18.0, right: 18),
+                      padding: const EdgeInsets.only(left: 20.0, right: 18),
                       child: IntlPhoneField(
-                        dropdownTextStyle: const TextStyle(color: Colors.black),
-                        cursorColor: Colors.black,
+                        dropdownTextStyle: const TextStyle(color: Colors.white),
+                        cursorColor: Colors.white,
                         style:
-                            const TextStyle(color: Colors.black, fontSize: 20),
+                            const TextStyle(color: Colors.white, fontSize: 20),
                         invalidNumberMessage: 'Invalid Phone Number!',
                         textAlignVertical: TextAlignVertical.center,
                         onChanged: (phone) =>
@@ -170,10 +172,10 @@ class _NumberAuthState extends State<NumberAuth> {
                         keyboardType: TextInputType.phone,
                         decoration: const InputDecoration(
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                           focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                         ),
                       ),
@@ -221,7 +223,7 @@ class _NumberAuthState extends State<NumberAuth> {
                       children: const [
                         Expanded(
                           child: Divider(
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                         SizedBox(
@@ -240,7 +242,7 @@ class _NumberAuthState extends State<NumberAuth> {
                         ),
                         Expanded(
                           child: Divider(
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                       ],

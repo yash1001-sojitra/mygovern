@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:mygovern/Core/Constant/string.dart';
 import 'package:mygovern/Core/Constant/textcontroller.dart';
+import 'package:mygovern/Screens/Authentication/signinpage.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -42,12 +43,13 @@ class _SignupPageState extends State<SignupPage> {
 
     return Stack(
       children: [
-        Background(),
+        // Background(),
+        BackgroundImageforlogin(),
         Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
-            iconTheme: IconThemeData(color: Colors.black),
+            iconTheme: IconThemeData(color: Colors.white),
           ),
           backgroundColor: Colors.transparent,
           body: SafeArea(
@@ -64,7 +66,7 @@ class _SignupPageState extends State<SignupPage> {
                         style: TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black),
+                            color: Colors.white),
                       ),
                     ),
                     const SizedBox(height: 30),
@@ -79,22 +81,22 @@ class _SignupPageState extends State<SignupPage> {
                           controller: emailController,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.emailAddress,
-                          cursorColor: Colors.black,
+                          cursorColor: Colors.white,
                           style: const TextStyle(
-                              color: Colors.black, fontSize: 17),
+                              color: Colors.white, fontSize: 17),
                           decoration: const InputDecoration(
                             prefixIcon: Icon(
                               Icons.email,
-                              color: Colors.black45,
+                              color: Colors.white,
                             ),
                             labelText: 'Email',
                             labelStyle: TextStyle(
-                              color: Colors.black45,
+                              color: Colors.white60,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.normal,
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                           ),
                         )),
@@ -103,38 +105,38 @@ class _SignupPageState extends State<SignupPage> {
                         height: 70,
                         width: MediaQuery.of(context).size.width * 0.90,
                         child: TextField(
-                          cursorColor: Colors.black,
+                          cursorColor: Colors.white,
                           controller: passwordController,
                           style: const TextStyle(
-                              color: Colors.black, fontSize: 17),
+                              color: Colors.white, fontSize: 17),
                           obscureText: ispasswordvisible,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             focusedBorder: const UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             prefixIcon: const Icon(
                               Icons.lock,
-                              color: Colors.black45,
+                              color: Colors.white,
                             ),
                             suffixIcon: IconButton(
                               icon: ispasswordvisible
                                   ? const Icon(
                                       Icons.visibility_off,
                                       size: 20,
-                                      color: Colors.black45,
+                                      color: Colors.white,
                                     )
                                   : const Icon(
                                       Icons.visibility,
                                       size: 20,
-                                      color: Colors.black45,
+                                      color: Colors.white,
                                     ),
                               onPressed: () => setState(
                                   () => ispasswordvisible = !ispasswordvisible),
                             ),
                             labelText: 'Password',
                             labelStyle: const TextStyle(
-                              color: Colors.black45,
+                              color: Colors.white60,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -179,9 +181,9 @@ class _SignupPageState extends State<SignupPage> {
                         const Text(
                           "Already have an Account?",
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w400,
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                         ),
                         const Padding(padding: EdgeInsets.only(left: 5)),
@@ -192,7 +194,7 @@ class _SignupPageState extends State<SignupPage> {
                           child: const Text(
                             "Login",
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
                             ),
@@ -205,7 +207,7 @@ class _SignupPageState extends State<SignupPage> {
                       children: const [
                         Expanded(
                           child: Divider(
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                         SizedBox(
@@ -224,29 +226,53 @@ class _SignupPageState extends State<SignupPage> {
                         ),
                         Expanded(
                           child: Divider(
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 30),
-                    GestureDetector(
-                      onTap: () async {
-                        bool val = await userDataProvider.signInWithGoogle();
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: () async {
+                            bool val =
+                                await userDataProvider.signInWithGoogle();
 
-                        if (val)
-                          Navigator.pushNamed(context, homepageScreenRoute);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Image.asset(
-                          "assets/images/google.png",
-                          height: 35,
+                            if (val)
+                              Navigator.pushNamed(context, homepageScreenRoute);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Image.asset(
+                              "assets/images/google.png",
+                              height: 35,
+                            ),
+                          ),
                         ),
-                      ),
+                        const SizedBox(
+                          width: 25,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, NumberauthScreenRoute);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Image.asset(
+                              "assets/images/phoneicon.png",
+                              height: 35,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
