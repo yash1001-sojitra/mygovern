@@ -23,28 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final categoryList = Provider.of<List<CategoryData>?>(context) ?? [];
-    print(categoryList);
-    // for (var i = 0; i < categoryList.length; i++) {
-    //   print(categoryList[i].categoryname);
-    // }
-
-    List documentsname = [
-      "આવક પ્રમાણપત્ર",
-      "નોન ક્રિમિલિયર પ્રમાણપત્ર",
-      "ડોમિસાઇલ સર્ટિફિકેટ",
-      "વિધવા સહાય પ્રમાણપત્ર",
-      "વારસાઈ પ્રમાણપત્ર"
-    ];
-
-    List documenticon = [
-      "national.png",
-      "national.png",
-      "national.png",
-      "national.png",
-      "national.png"
-    ];
-
-   
 
     return SingleChildScrollView(
       child: Container(
@@ -108,11 +86,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, catfordocScreenRoute,
-                                arguments: 
-                                  snapshot.data!.docs[index]['document'],
-                            )
-                                ;
+                            Navigator.pushNamed(
+                              context,
+                              catfordocScreenRoute,
+                              arguments: snapshot.data!.docs[index]['document'],
+                            );
                           },
                           child: DocCard1(
                             documentname: snapshot.data!.docs[index]
@@ -140,13 +118,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
+            const SizedBox(
+              height: 20,
             ),
             categoryList != null
                 ? SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    height: 170,
+                    height: 150,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: categoryList.length,
@@ -170,7 +148,81 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                   )
-                : CircularProgressIndicator(),
+                : const CircularProgressIndicator(),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Recently Added Services",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, viewalldocScreenRoute);
+                    },
+                    child: const Text("View All",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54)),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                future: FirebaseFirestore.instance
+                    .collection('Category')
+                    .doc("bc16525a-3512-4a89-93ff-c651953864f5")
+                    .collection('Documents')
+                    .get(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: Container(
+                        color: Colors.transparent,
+                        child: Center(
+                          child: SizedBox(
+                            height: 60,
+                            width: 60,
+                            child: //CircularProgressIndicator(),
+                                Lottie.asset('assets/json/lodingtrans.json'),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                  return SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 160,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, catfordocScreenRoute,
+                                arguments: snapshot.data!.docs[index]
+                                    ['document']);
+                          },
+                          child: DocCardforurl(
+                            documentname: snapshot.data!.docs[index]
+                                ['document'],
+                            documentimage: snapshot.data!.docs[index]
+                                ['iconUrl'],
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }),
             const SizedBox(
               height: 10,
             ),
@@ -196,13 +248,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
+            const SizedBox(
+              height: 20,
             ),
             FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 future: FirebaseFirestore.instance
                     .collection('Category')
-                    .doc("a74d19ca-2c2f-40ac-b082-9b2c7b6769b4")
+                    .doc("80649164-eea4-46a7-88ad-e8002d043179")
                     .collection('Documents')
                     .get(),
                 builder: (context, snapshot) {
@@ -223,7 +275,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                   return SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    height: 170,
+                    height: 160,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 5,
@@ -231,7 +283,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         return GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, catfordocScreenRoute,
-                                arguments: documentsname[index]);
+                                arguments: snapshot.data!.docs[index]
+                                    ['document']);
                           },
                           child: DocCardforurl(
                             documentname: snapshot.data!.docs[index]

@@ -75,12 +75,15 @@ class _ProfileState extends State<Profile> {
                         Container(
                           width: 120,
                           height: 160,
-                          decoration:
-                              CustomDecoration.containerCornerRadiusDecoration,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            border: Border.all(color: Colors.black),
+                          ),
                           child: pickedFile != null
                               ? Image.file(
                                   height: 120,
                                   width: 160,
+                                  fit: BoxFit.cover,
                                   (File("${pickedFile!.path}")),
                                 )
                               : snapshot.data!.get('profileimage').toString() !=
@@ -89,6 +92,7 @@ class _ProfileState extends State<Profile> {
                                       snapshot.data!.get('profileimage'),
                                       height: 120,
                                       width: 160,
+                                      fit: BoxFit.cover,
                                     )
                                   : Icon(Icons.person),
                         ),

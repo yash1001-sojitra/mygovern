@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mygovern/Core/Constant/string.dart';
+import 'package:mygovern/Screens/Authentication/signinpage.dart';
 
 import '../../../Logic/Provider/userData_provider.dart';
 import '../../../Logic/Widgets/waveback.dart';
@@ -26,7 +27,8 @@ class _ForgotPassState extends State<ForgotPass> {
       key: _formkey,
       child: Stack(
         children: [
-          Background(),
+          // Background(),
+          BackgroundImageforlogin(),
           Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -46,7 +48,7 @@ class _ForgotPassState extends State<ForgotPass> {
                           textStyle: const TextStyle(
                               fontSize: 50,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              color: Colors.white),
                         ),
                       ),
                     ),
@@ -59,7 +61,7 @@ class _ForgotPassState extends State<ForgotPass> {
                           textStyle: const TextStyle(
                               fontSize: 50,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              color: Colors.white),
                         ),
                       ),
                     ),
@@ -74,23 +76,23 @@ class _ForgotPassState extends State<ForgotPass> {
                           obscureText: false,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.emailAddress,
-                          cursorColor: Colors.black,
+                          cursorColor: Colors.white,
                           style: const TextStyle(
-                              color: Colors.black, fontSize: 20),
+                              color: Colors.white, fontSize: 20),
                           decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
+                              borderSide: BorderSide(color: Colors.white),
                             ),
                             prefixIcon: Icon(
                               Icons.email,
-                              color: Colors.black45,
+                              color: Colors.white,
                             ),
                             labelText: 'Email',
                             labelStyle: TextStyle(
-                              color: Colors.black45,
+                              color: Colors.white60,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.normal,
                             ),
@@ -127,7 +129,7 @@ class _ForgotPassState extends State<ForgotPass> {
                       children: const [
                         Expanded(
                           child: Divider(
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                         SizedBox(
@@ -146,7 +148,7 @@ class _ForgotPassState extends State<ForgotPass> {
                         ),
                         Expanded(
                           child: Divider(
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                         ),
                       ],
