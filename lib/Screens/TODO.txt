@@ -11,5 +11,5 @@
 
 
 
-
+//TODO: big view of all card in cat for doc
  
